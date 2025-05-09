@@ -10,7 +10,7 @@ export default function CTA() {
         <p className="text-xl mb-8 max-w-2xl mx-auto">
           Join thousands who've future-proofed their careers against automation
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
           <Link
             href="/signup"
             className="bg-green-400 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-500 transition-colors inline-block"
@@ -22,6 +22,14 @@ export default function CTA() {
             className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-colors inline-block"
           >
             Post AI-Resistant Jobs
+          </Link>
+        </div>
+        <div className="mt-4">
+          <Link
+            href="/ai-resistance-index"
+            className="text-white underline hover:text-green-300 font-medium"
+          >
+            Check out our AI Resistance Index™ to learn more →
           </Link>
         </div>
       </div>
