@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureProof Jobs - Browse AI-Resistant Jobs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1e3a8a;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 92%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #4ade80;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #4ade80;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 2.5rem 0;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+        }
+        
+        .search-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: -25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-bar button {
+            background: #4ade80;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar button:hover {
+            background: #22c55e;
+        }
+        
+        .quick-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-pill {
+            background: #f1f5f9;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .filter-pill:hover {
+            background: #e2e8f0;
+        }
+        
+        .filter-pill.active {
+            background: #dbeafe;
+            border-color: #3b82f6;
+            color: #1e40af;
+        }
+        
+        .filter-pill-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .filters-panel {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            align-self: flex-start;
+            position: sticky;
+            top: 90px;
+        }
+        
+        .filters-panel h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #1e3a8a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .filters-panel h3 span {
+            color: #4b5563;
+            font-size: 0.9rem;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+        
+        .filter-section h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        
+        .slider-container {
+            padding: 0 0.5rem;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slider-track {
+            height: 10px;
+            background: linear-gradient(to right, #ef4444, #f59e0b, #10b981);
+            border-radius: 5px;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .slider-thumb {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            left: 75%;
+            cursor: pointer;
+        }
+        
+        .slider-value {
+            position: absolute;
+            top: -25px;
+            left: 75%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .checkbox-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input {
+            margin-right: 0.8rem;
+            width: 16px;
+            height: 16px;
+            accent-color: #3b82f6;
+        }
+        
+        .checkbox-item label {
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .checkbox-item label span {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        
+        .skill-tag {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover, .skill-tag.active {
+            background: #dbeafe;
+            border-color: #3b82f6;
+            color: #1e40af;
+        }
+        
+        .results-panel {
+            flex: 1;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .results-count {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .results-count span {
+            color: #3b82f6;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .sort-options label {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+        
+        .sort-options select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        
+        .job-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .job-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left-color: #4ade80;
+        }
+        
+        .job-logo {
+            width: 80px;
+            height: 80px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            margin-right: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        .job-details {
+            flex: 1;
+        }
+        
+        .job-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.3rem;
+        }
+        
+        .company-name {
+            font-size: 1rem;
+            color: #4b5563;
+            margin-bottom: 0.8rem;
+        }
+        
+        .futureproof-score {
+            background: #ecfdf5;
+            color: #059669;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .medium-score {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .job-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .meta-item i {
+            margin-right: 0.5rem;
+            color: #6b7280;
+        }
+        
+        .job-description {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .job-tag {
+            background: #f1f5f9;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+        
+        .human-skill-tag {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+        
+        .pagination-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .pagination-btn:hover {
+            background: #f1f5f9;
+        }
+        
+        .pagination-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        
+        .pagination-btn.disabled {
+            color: #cbd5e1;
+            cursor: not-allowed;
+        }
+        
+        .skill-match-indicator {
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .match-label {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin-right: 0.8rem;
+        }
+        
+        .match-progress {
+            flex: 1;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .match-bar {
+            position: absolute;
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 3px;
+        }
+        
+        .match-percentage {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-left: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Future<span>Proof</span>Jobs</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Browse Jobs</a></li>
+                    <li><a href="#">AI Resistance Index</a></li>
+                    <li><a href="#">Career Paths</a></li>
+                    <li><a href="#">For Employers</a></li>
+                    <li><a href="#">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Browse AI-Resistant Jobs</h1>
+            <p>Discover career opportunities with high human value that artificial intelligence cannot replace</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Job title, skills, or keywords...">
+                <button>Search Jobs</button>
+            </div>
+            <div class="quick-filters">
+                <div class="filter-pill active">
+                    <div class="filter-pill-icon" style="background: #4ade80;"></div>
+                    High Resistance (90%+)
+                </div>
+                <div class="filter-pill">
+                    <div class="filter-pill-icon" style="background: #f59e0b;"></div>
+                    Medium Resistance (70-89%)
+                </div>
+                <div class="filter-pill">
+                    <div class="filter-pill-icon" style="background: #ef4444;"></div>
+                    At Risk (Below 70%)
+                </div>
+                <div class="filter-pill">
+                    Remote Friendly
+                </div>
+                <div class="filter-pill">
+                    Entry Level
+                </div>
+                <div class="filter-pill">
+                    Posted This Week
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <aside class="filters-panel">
+                <h3>Filters <span>Clear All</span></h3>
+                
+                <div class="filter-section">
+                    <h4>FutureProof Score</h4>
+                    <div class="slider-container">
+                        <div class="slider-labels">
+                            <span>Risky</span>
+                            <span>Safe</span>
+                        </div>
+                        <div class="slider-track">
+                            <div class="slider-thumb">
+                                <div class="slider-value">85%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Human Skills Required</h4>
+                    <div>
+                        <div class="skill-tag active">Empathy</div>
+                        <div class="skill-tag">Creativity</div>
+                        <div class="skill-tag">Complex Decision-Making</div>
+                        <div class="skill-tag">Physical Dexterity</div>
+                        <div class="skill-tag">Emotional Intelligence</div>
+                        <div class="skill-tag">Ethical Judgment</div>
+                        <div class="skill-tag">Social Influence</div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Job Categories</h4>
+                    <div class="checkbox-list">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="healthcare" checked>
+                            <label for="healthcare">Healthcare & Wellness <span>(124)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="creative">
+                            <label for="creative">Creative Direction <span>(87)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="skilled-trades">
+                            <label for="skilled-trades">Skilled Trades <span>(93)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="education">
+                            <label for="education">Education <span>(68)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="social-services">
+                            <label for="social-services">Social Services <span>(52)</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Location</h4>
+                    <div class="checkbox-list">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="remote" checked>
+                            <label for="remote">Remote <span>(175)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hybrid">
+                            <label for="hybrid">Hybrid <span>(214)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="onsite">
+                            <label for="onsite">On-site <span>(189)</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Salary Range</h4>
+                    <div class="checkbox-list">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="salary-50">
+                            <label for="salary-50">$50k - $75k <span>(128)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="salary-75" checked>
+                            <label for="salary-75">$75k - $100k <span>(142)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="salary-100">
+                            <label for="salary-100">$100k - $150k <span>(97)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="salary-150">
+                            <label for="salary-150">$150k+ <span>(43)</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Experience Level</h4>
+                    <div class="checkbox-list">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="entry">
+                            <label for="entry">Entry Level <span>(95)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mid" checked>
+                            <label for="mid">Mid Level <span>(173)</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="senior">
+                            <label for="senior">Senior Level <span>(112)</span></label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="results-panel">
+                <div class="results-header">
+                    <div class="results-count">Showing <span>143</span> AI-resistant jobs</div>
+                    <div class="sort-options">
+                        <label for="sort-by">Sort by:</label>
+                        <select id="sort-by">
+                            <option value="relevance">FutureProof Score</option>
+                            <option value="date">Post Date</option>
+                            <option value="salary">Salary</option>
+                            <option value="match">Skill Match</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="job-cards">
+                    <div class="job-card">
+                        <div class="job-logo">MC</div>
+                        <div class="job-details">
+                            <div class="job-title-row">
+                                <div>
+                                    <h3 class="job-title">Mental Health Counselor</h3>
+                                    <div class="company-name">Wellness Partners Alliance</div>
+                                </div>
+                                <div class="futureproof-score">97% FutureProof</div>
+                            </div>
+                            <div class="job-meta">
+                                <div class="meta-item"><i>📍</i> Remote</div>
+                                <div class="meta-item"><i>💰</i> $75,000 - $95,000</div>
+                                <div class="meta-item"><i>⏱️</i> Posted 2 days ago</div>
+                            </div>
+                            <div class="job-description">
+                                Provide therapeutic support and counseling services to individuals facing mental health challenges. Develop and implement treatment plans, facilitate group therapy sessions, and collaborate with healthcare professionals to ensure comprehensive client care.
+                            </div>
+                            <div class="job-tags">
+                                <div class="job-tag human-skill-tag">Empathy</div>
+                                <div class="job-tag human-skill-tag">Emotional Intelligence</div>
+                                <div class="job-tag human-skill-tag">Ethical Judgment</div>
+                                <div class="job-tag">Healthcare</div>
+                                <div class="job-tag">Mental Health</div>
+                            </div>
+                            <div class="skill-match-indicator">
+                                <div class="match-label">Skill Match</div>
+                                <div class="match-progress">
+                                    <div class="match-bar" style="width: 85%;"></div>
+                                </div>
+                                <div class="match-percentage">85%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-logo">OT</div>
+                        <div class="job-details">
+                            <div class="job-title-row">
+                                <div>
+                                    <h3 class="job-title">Occupational Therapist</h3>
+                                    <div class="company-name">LifeSpan Rehabilitation Center</div>
+                                </div>
+                                <div class="futureproof-score">95% FutureProof</div>
+                            </div>
+                            <div class="job-meta">
+                                <div class="meta-item"><i>📍</i> Hybrid (Boston, MA)</div>
+                                <div class="meta-item"><i>💰</i> $85,000 - $110,000</div>
+                                <div class="meta-item"><i>⏱️</i> Posted 1 week ago</div>
+                            </div>
+                            <div class="job-description">
+                                Help patients develop, recover, and improve the skills needed for daily living and working. Create customized intervention programs to improve patients' ability to perform daily activities, evaluate home and work environments, and recommend adaptive equipment.
+                            </div>
+                            <div class="job-tags">
+                                <div class="job-tag human-skill-tag">Physical Dexterity</div>
+                                <div class="job-tag human-skill-tag">Empathy</div>
+                                <div class="job-tag human-skill-tag">Complex Decision-Making</div>
+                                <div class="job-tag">Healthcare</div>
+                                <div class="job-tag">Rehabilitation</div>
+                            </div>
+                            <div class="skill-match-indicator">
+                                <div class="match-label">Skill Match</div>
+                                <div class="match-progress">
+                                    <div class="match-bar" style="width: 92%;"></div>
+                                </div>
+                                <div class="match-percentage">92%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-logo">CD</div>
+                        <div class="job-details">
+                            <div class="job-title-row">
+                                <div>
+                                    <h3 class="job-title">Creative Director</h3>
+                                    <div class="company-name">Artisan Brand Studio</div>
+                                </div>
+                                <div class="futureproof-score">92% FutureProof</div>
+                            </div>
+                            <div class="job-meta">
+                                <div class="meta-item"><i>📍</i> Hybrid (New York, NY)</div>
+                                <div class="meta-item"><i>💰</i> $120,000 - $145,000</div>
+                                <div class="meta-item"><i>⏱️</i> Posted 3 days ago</div>
+                            </div>
+                            <div class="job-description">
+                                Lead our creative team in developing original campaign concepts and brand strategies. Collaborate with clients to understand their vision, oversee multiple projects from concept to completion, and mentor junior designers to deliver exceptional creative work.
+                            </div>
+                            <div class="job-tags">
+                                <div class="job-tag human-skill-tag">Creativity</div>
+                                <div class="job-tag human-skill-tag">Social Influence</div>
+                                <div class="job-tag human-skill-tag">Emotional Intelligence</div>
+                                <div class="job-tag">Design</div>
+                                <div class="job-tag">Leadership</div>
+                            </div>
+                            <div class="skill-match-indicator">
+                                <div class="match-label">Skill Match</div>
+                                <div class="match-progress">
+                                    <div class="match-bar" style="width: 78%;"></div>
+                                </div>
+                                <div class="match-percentage">78%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div class="job-logo">SE</div>
+                        <div class="job-details">
+                            <div class="job-title-row">
+                                <div>
+                                    <h3 class="job-title">Special Education Teacher</h3>
+                                    <div class="company-name">Inclusive Learning Academy</div>
+                                </div>
+                                <div class="futureproof-score medium-score">88% FutureProof</div>
+                            </div>
+                            <div class="job-meta">
+                                <div class="meta-item"><i>📍</i> On-site (Chicago, IL)</div>
+                                <div class="meta-item"><i>💰</i> $65,000 - $85,000</div>
+                                <div class="meta-item"><i>⏱️</i> Posted 5 days ago</div>
+                            </div>
+                            <div class="job-description">
+                                Develop and implement individualized education programs for students with diverse learning needs. Adapt teaching methods and materials to meet students' varying interests, abilities, and learning styles while fostering an inclusive classroom environment.
+                            </div>
+                            <div class="job-tags">
+                                <div class="job-tag human-skill-tag">Empathy</div>
+                                <div class="job-tag human-skill-tag">Complex Decision-Making</div>
+                                <div class="job-tag human-skill-tag">Creativity</div>
+                                <div class="job-tag">Education</div>
+                                <div class="job-tag">Special Needs</div>
+                            </div>
+                            <div class="skill-match-indicator">
