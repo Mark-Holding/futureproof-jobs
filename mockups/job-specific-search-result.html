@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureProof Jobs - Job-Specific Resistance Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .search-result-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+        }
+        
+        .search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+        }
+        
+        .back-button {
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4b5563;
+            text-decoration: none;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .back-button:hover {
+            background: #e5e7eb;
+        }
+        
+        .job-title {
+            flex: 1;
+            margin-left: 1rem;
+        }
+        
+        .job-title h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.3rem;
+        }
+        
+        .job-title p {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+        
+        .print-button {
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .print-button:hover {
+            background: #e5e7eb;
+        }
+        
+        .result-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 2rem;
+        }
+        
+        .resistance-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .resistance-score {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 1rem 0 2rem;
+        }
+        
+        .score-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .score-circle::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 83%;
+            background: #3b82f6;
+            z-index: 0;
+        }
+        
+        .score-value {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .score-category {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #bfdbfe;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1e40af;
+            white-space: nowrap;
+        }
+        
+        .stability-timeline {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stability-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        
+        .timeline-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-progress {
+            position: absolute;
+            height: 100%;
+            border-radius: 4px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            width: 75%;
+        }
+        
+        .timeline-markers {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .timeline-label {
+            font-size: 0.9rem;
+            color: #4b5563;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        .resistance-details {
+            margin-top: 1rem;
+        }
+        
+        .resistance-detail {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .resistance-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            flex: 1;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.9rem;
+        }
+        
+        .analysis-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .analysis-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f9fafb;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        
+        .section-body {
+            padding: 1.5rem;
+        }
+        
+        .factors-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .factor-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .factor-header {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .factor-header.positive {
+            color: #059669;
+        }
+        
+        .factor-header.negative {
+            color: #dc2626;
+        }
+        
+        .factor-list {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .factor-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        
+        .factor-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .factor-item::before {
+            content: '•';
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            line-height: 1;
+        }
+        
+        .factor-item.positive::before {
+            color: #059669;
+        }
+        
+        .factor-item.negative::before {
+            color: #dc2626;
+        }
+        
+        .factor-text {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        
+        .skills-chart {
+            height: 250px;
+            margin-top: 1rem;
+        }
+        
+        .skill-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-name {
+            width: 30%;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .skill-bar-container {
+            flex: 1;
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .skill-bar {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 6px;
+        }
+        
+        .skill-value {
+            width: 10%;
+            text-align: right;
+            padding-left: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .skill-empathy {
+            background: #10b981;
+        }
+        
+        .skill-creativity {
+            background: #8b5cf6;
+        }
+        
+        .skill-decision {
+            background: #f59e0b;
+        }
+        
+        .skill-ethics {
+            background: #ef4444;
+        }
+        
+        .skill-physical {
+            background: #6366f1;
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 3px;
+            background: #e5e7eb;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -1.65rem;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid white;
+        }
+        
+        .timeline-dot.future {
+            background: #9ca3af;
+        }
+        
+        .timeline-year {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .timeline-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .recommendations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .recommendation-icon {
+            width: 40px;
+            height: 40px;
+            background: #dbeafe;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .recommendation-content {
+            flex: 1;
+        }
+        
+        .recommendation-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+        
+        .recommendation-description {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .ai-tools {
+            margin-top: 1.5rem;
+        }
+        
+        .ai-tools-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .tool-card {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-3px);
+            background: #e5e7eb;
+        }
+        
+        .tool-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-top: 0.5rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table th {
+            font-weight: 500;
+            color: #4b5563;
+            background: #f9fafb;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f9fafb;
+        }
+        
+        .job-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .resistance-indicator {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .very-high {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .high {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .medium {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .low {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .overlap-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .overlap-fill {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .easy {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .moderate {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .challenging {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .significant {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .skill-map-container {
+            margin-top: 1.5rem;
+        }
+        
+        .skill-map-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+        
+        .skill-map {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 200px;
+            position: relative;
+        }
+        
+        .skill-node {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            background: #bfdbfe;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e40af;
+        }
+        
+        .node-1 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #3b82f6;
+            color: white;
+            width: 100px;
+            height: 40px;
+        }
+        
+        .node-2 {
+            top: 30%;
+            left: 25%;
+        }
+        
+        .node-3 {
+            top: 70%;
+            left: 30%;
+        }
+        
+        .node-4 {
+            top: 20%;
+            left: 70%;
+        }
+        
+        .node-5 {
+            top: 60%;
+            left: 75%;
+        }
+        
+        .skill-line {
+            position: absolute;
+            background: #d1d5db;
+            height: 2px;
+            transform-origin: 0 50%;
+        }
+        
+        .line-1 {
+            width: 100px;
+            top: 40%;
+            left: 35%;
+            transform: rotate(35deg);
+        }
+        
+        .line-2 {
+            width: 90px;
+            top: 55%;
+            left: 35%;
+            transform: rotate(-25deg);
+        }
+        
+        .line-3 {
+            width: 110px;
+            top: 40%;
+            left: 60%;
+            transform: rotate(-30deg);
+        }
+        
+        .line-4 {
+            width: 90px;
+            top: 55%;
+            left: 65%;
+            transform: rotate(30deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="search-result-container">
+        <div class="search-header">
+            <a href="#" class="back-button">
+                <span>←</span> Back to Overview
+            </a>
+            <div class="job-title">
+                <h1>Clinical Psychology Therapist</h1>
+                <p>Healthcare & Mental Health</p>
+            </div>
+            <button class="print-button">
+                <span>🖨️</span> Print Analysis
+            </button>
+        </div>
+        
+        <div class="result-content">
+            <div class="resistance-card">
+                <div class="resistance-score">
+                    <div class="score-circle">
+                        <div class="score-value">83%</div>
+                    </div>
+                    <div class="score-category">High Resistance</div>
+                </div>
+                
+                <div class="stability-timeline">
+                    <div class="stability-title">Estimated Stability Timeline</div>
+                    <div class="timeline-bar">
+                        <div class="timeline-progress"></div>
+                    </div>
+                    <div class="timeline-markers">
+                        <span>2025</span>
+                        <span>2035</span>
+                        <span>2045+</span>
+                    </div>
+                    <div class="timeline-label">Core role stable through 2040 with evolving responsibilities</div>
+                </div>
+                
+                <div class="resistance-details">
+                    <div class="resistance-detail">
+                        <div class="detail-label">Industry Category</div>
+                        <div class="detail-value">Healthcare</div>
+                    </div>
+                    <div class="resistance-detail">
+                        <div class="detail-label">Salary Range</div>
+                        <div class="detail-value">$70,000 - $120,000</div>
+                    </div>
+                    <div class="resistance-detail">
+                        <div class="detail-label">Growth Projection</div>
+                        <div class="detail-value">+14% (2025-2035)</div>
+                    </div>
+                    <div class="resistance-detail">
+                        <div class="detail-label">Education Required</div>
+                        <div class="detail-value">Master's/Doctorate</div>
+                    </div>
+                    <div class="resistance-detail">
+                        <div class="detail-label">Resistance Rank</div>
+                        <div class="detail-value">Top 15%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-content">
+                <div class="analysis-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Key Factors Analysis</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="factors-grid">
+                            <div class="factor-column">
+                                <h3 class="factor-header positive">
+                                    <span>✓</span> Human Value Factors
+                                </h3>
+                                <div class="factor-list">
+                                    <div class="factor-item positive">
+                                        <div class="factor-text">Deep interpersonal empathy and emotional connection that AI cannot replicate</div>
+                                    </div>
+                                    <div class="factor-item positive">
+                                        <div class="factor-text">Complex ethical judgment in highly nuanced human situations</div>
+                                    </div>
+                                    <div class="factor-item positive">
+                                        <div class="factor-text">Ability to build authentic therapeutic relationships based on trust</div>
+                                    </div>
+                                    <div class="factor-item positive">
+                                        <div class="factor-text">Cultural and contextual awareness in treatment approaches</div>
+                                    </div>
+                                    <div class="factor-item positive">
+                                        <div class="factor-text">Creative adaptation of therapeutic techniques to individual needs</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="factor-column">
+                                <h3 class="factor-header negative">
+                                    <span>!</span> Vulnerability Factors
+                                </h3>
+                                <div class="factor-list">
+                                    <div class="factor-item negative">
+                                        <div class="factor-text">Initial intake and assessment processes could be partially automated</div>
+                                    </div>
+                                    <div class="factor-item negative">
+                                        <div class="factor-text">Some standard therapeutic techniques may be delivered by AI for basic cases</div>
+                                    </div>
+                                    <div class="factor-item negative">
+                                        <div class="factor-text">Data-driven treatment recommendation systems will augment decision making</div>
+                                    </div>
+                                    <div class="factor-item negative">
+                                        <div class="factor-text">Administrative and documentation aspects are highly automatable</div>
+                                    </div>
+                                    <div class="factor-item negative">
+                                        <div class="factor-text">Some clients may accept AI-assisted therapy for cost or accessibility reasons</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skills-chart">
+                            <h3 class="factor-header" style="margin-top: 1.5rem;">Skills Contribution to Resistance</h3>
+                            
+                            <div class="skill-row">
+                                <div class="skill-name">Empathy & Emotional Intelligence</div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar skill-empathy" style="width: 95%;"></div>
+                                </div>
+                                <div class="skill-value">9.5</div>
+                            </div>
+                            
+                            <div class="skill-row">
+                                <div class="skill-name">Ethical Judgment</div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar skill-ethics" style="width: 90%;"></div>
+                                </div>
+                                <div class="skill-value">9.0</div>
+                            </div>
+                            
+                            <div class="skill-row">
+                                <div class="skill-name">Complex Decision-Making</div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar skill-decision" style="width: 85%;"></div>
+                                </div>
+                                <div class="skill-value">8.5</div>
+                            </div>
+                            
+                            <div class="skill-row">
+                                <div class="skill-name">Creative Adaptation</div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar skill-creativity" style="width: 80%;"></div>
+                                </div>
+                                <div class="skill-value">8.0</div>
+                            </div>
+                            
+                            <div class="skill-row">
+                                <div class="skill-name">Physical Presence</div>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar skill-physical" style="width: 70%;"></div>
+                                </div>
+                                <div class="skill-value">7.0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Transformation Pathway</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="timeline-container">
+                            <div class="timeline-line"></div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2025-2028</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Administrative Automation</div>
+                                    <div class="timeline-description">
+                                        AI systems will handle most administrative tasks, including note-taking, scheduling, and basic documentation, freeing therapists to focus more on direct client care.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2028-2032</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Assessment Augmentation</div>
+                                    <div class="timeline-description">
+                                        AI will provide data-enriched client assessments, detecting patterns and subtle indicators that complement the therapist's clinical judgment and help personalize treatment plans.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-year">2032-2038</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Therapeutic Collaboration</div>
+                                    <div class="timeline-description">
+                                        Therapists will increasingly collaborate with AI systems that offer evidence-based intervention suggestions and track client progress through multimodal data analysis, while maintaining human leadership of the therapeutic relationship.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot future"></div>
+                                <div class="timeline-year">2038-2045</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Specialization in Complex Cases</div>
+                                    <div class="timeline-description">
+                                        Human therapists will increasingly focus on complex cases, trauma work, and situations requiring high ethical judgment, while AI handles more routine therapeutic support under human supervision.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Skill Development Recommendations</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="recommendations-list">
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon">🧠</div>
+                                <div class="recommendation-content">
+                                    <div class="recommendation-title">Advanced Therapeutic Specialization</div>
+                                    <div class="recommendation-description">
+                                        Develop expertise in complex therapeutic approaches that require deep human insight, such as trauma-informed care, complex grief work, or specialized modalities that require high contextual awareness.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon">🤖</div>
+                                <div class="recommendation-content">
+                                    <div class="recommendation-title">AI-Augmented Therapy Skills</div>
+                                    <div class="recommendation-description">
+                                        Learn to effectively integrate AI tools into your practice, including how to evaluate AI-generated insights, maintain clinical leadership while using supportive technologies, and blend human and artificial intelligence for optimal client outcomes.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-item">
+                                <div class="recommendation-icon">🌐</div>
+                                <div class="recommendation-content">
+                                    <div class="recommendation-title">Cross-Cultural Therapeutic Competence</div>
+                                    <div class="recommendation-description">
+                                        Strengthen ability to work effectively across diverse cultural contexts, as cultural nuance and sensitivity will remain challenging for AI systems to fully replicate for the foreseeable future.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-tools">
+                            <div class="ai-tools-title">Complementary Technologies to Learn</div>
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <div class="tool-icon">📊</div>
+                                    <div class="tool-name">Predictive Analytics</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🗣️</div>
+                                    <div class="tool-name">NLP Systems</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">📱</div>
+                                    <div class="tool-name">Therapeutic Apps</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🧪</div>
+                                    <div class="tool-name">Outcome Tracking</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🔍</div>
+                                    <div class="tool-name">Research Synthesis</div>
+                                </div>
+                                <div class="tool-card">
+                                    <div class="tool-icon">🔒</div>
+                                    <div class="tool-name">Secure Telehealth</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Similar Roles Comparison</h2>
+                    </div>
+                    <div class="section-body">
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Role</th>
+                                <th>Resistance</th>
+                                <th>Skills Overlap</th>
+                                <th>Transition Difficulty</th>
+                            </tr>
+                            <tr>
+                                <td class="job-name">Specialized Trauma Therapist</td>
+                                <td><span class="resistance-indicator very-high">92%</span></td>
+                                <td>
+                                    <div class="overlap-bar">
+                                        <div class="overlap-fill" style="width: 85%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="difficulty-badge easy">Easy</span></td>
+                            </tr>
+                            <tr>
+                                <td class="job-name">Family Systems Therapist</td>
+                                <td><span class="resistance-indicator very-high">90%</span></td>
+                                <td>
+                                    <div class="overlap-bar">
+                                        <div class="overlap-fill" style="width: 80%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="difficulty-badge easy">Easy</span></td>
+                            </tr>
+                            <tr>
+                                <td class="job-name">Psychiatric Nurse Practitioner</td>
+                                <td><span class="resistance-indicator high">86%</span></td>
+                                <td>
+                                    <div class="overlap-bar">
+                                        <div class="overlap-fill" style="width: 65%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="difficulty-badge challenging">Challenging</span></td>
+                            </tr>
+                            <tr>
+                                <td class="job-name">Occupational Therapist</td>
+                                <td><span class="resistance-indicator high">85%</span></td>
+                                <td>
+                                    <div class="overlap-bar">
+                                        <div class="overlap-fill" style="width: 55%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="difficulty-badge moderate">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td class="job-name">Health Systems Navigator</td>
+                                <td><span class="resistance-indicator high">84%</span></td>
+                                <td>
+                                    <div class="overlap-bar">
+                                        <div class="overlap-fill" style="width: 60%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="difficulty-badge moderate">Moderate</span></td>
+                            </tr>
+                        </table>
+                        
+                        <div class="skill-map-container">
+                            <div class="skill-map-title">Skill Transfer Map</div>
+                            <div class="skill-map">
+                                <div class="skill-line line-1"></div>
+                                <div class="skill-line line-2"></div>
+                                <div class="skill-line line-3"></div>
+                                <div class="skill-line line-4"></div>
+                                
+                                <div class="skill-node node-1">Therapist</div>
+                                <div class="skill-node node-2">Empathy</div>
+                                <div class="skill-node node-3">Ethics</div>
+                                <div class="skill-node node-4">Analysis</div>
+                                <div class="skill-node node-5">Adaptation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

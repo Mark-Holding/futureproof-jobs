@@ -1,13 +1,9 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ResistanceScaleSection from '../components/ai-resistance/ResistanceScaleSection';
-import IndustryComparisonChart from '../components/ai-resistance/IndustryComparisonChart';
-import HumanSkillsRanking from '../components/ai-resistance/HumanSkillsRanking';
-import EmergingRolesSection from '../components/ai-resistance/EmergingRolesSection';
-import TransformationPathwaysSection from '../components/ai-resistance/TransformationPathwaysSection';
 import IndustryProjectionsGrid from '../components/ai-resistance/IndustryProjectionsGrid';
 import OverviewTabs from '../components/ai-resistance/OverviewTabs';
 import CTASection from '../components/ai-resistance/CTASection';
+import GlobalSearchHandler from '../components/ai-resistance/GlobalSearchHandler';
 
 export const metadata = {
   title: 'FutureProof Jobs - AI Resistance Index',
@@ -52,28 +48,19 @@ export default function AIResistanceIndex() {
                 <h2 className="text-2xl font-bold text-blue-900 mb-2">Occupational Resistance Overview</h2>
                 <p className="text-gray-600">See how different job categories compare in their ability to resist automation</p>
               </div>
-              <div className="bg-gray-100 rounded-lg flex items-center p-2 w-full max-w-md">
+              <form role="search" className="bg-gray-100 rounded-lg flex items-center p-2 w-full max-w-md">
                 <input 
                   type="text" 
                   placeholder="Search for a specific job..." 
                   className="bg-transparent border-none flex-1 px-2 py-2 focus:outline-none text-sm"
                 />
-                <button className="text-gray-500">🔍</button>
-              </div>
+                <button type="submit" className="text-gray-500">🔍</button>
+              </form>
             </div>
+            
+            <GlobalSearchHandler />
             
             <OverviewTabs />
-            <ResistanceScaleSection />
-            
-            <div className="flex flex-col lg:flex-row gap-8 mt-8">
-              <IndustryComparisonChart />
-              <HumanSkillsRanking />
-            </div>
-            
-            <div className="flex flex-col lg:flex-row gap-8 mt-8">
-              <EmergingRolesSection />
-              <TransformationPathwaysSection />
-            </div>
           </div>
           
           <div className="mb-8">

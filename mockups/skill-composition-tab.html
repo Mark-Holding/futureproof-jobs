@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureProof Jobs - AI Resistance Index: Skill Composition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .tab-content {
+            margin-top: 1rem;
+        }
+        
+        .section-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .section-description {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        
+        .skill-matrix {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .matrix-container {
+            height: 350px;
+            position: relative;
+            margin-top: 1rem;
+        }
+        
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 1px;
+            height: 100%;
+        }
+        
+        .matrix-cell {
+            position: relative;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .matrix-cell:hover {
+            transform: scale(1.05);
+            z-index: 5;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cell-level-1 {
+            background: #fee2e2;
+        }
+        
+        .cell-level-2 {
+            background: #fed7aa;
+        }
+        
+        .cell-level-3 {
+            background: #fef3c7;
+        }
+        
+        .cell-level-4 {
+            background: #d1fae5;
+        }
+        
+        .cell-level-5 {
+            background: #a7f3d0;
+        }
+        
+        .matrix-labels-y {
+            position: absolute;
+            top: 0;
+            left: -120px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        
+        .matrix-labels-x {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .matrix-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        
+        .matrix-label.y-label {
+            text-align: right;
+            padding-right: 1rem;
+            width: 120px;
+        }
+        
+        .matrix-label.x-label {
+            writing-mode: vertical-rl;
+            transform: rotate(45deg);
+            transform-origin: left top;
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .matrix-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 0.5rem;
+        }
+        
+        .legend-low {
+            background: #fee2e2;
+        }
+        
+        .legend-medium-low {
+            background: #fed7aa;
+        }
+        
+        .legend-medium {
+            background: #fef3c7;
+        }
+        
+        .legend-medium-high {
+            background: #d1fae5;
+        }
+        
+        .legend-high {
+            background: #a7f3d0;
+        }
+        
+        .skill-distribution {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .radar-chart-container {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .radar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .radar-chart {
+            height: 250px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .radar-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .radar-chart polygon {
+            fill: rgba(59, 130, 246, 0.2);
+            stroke: #3b82f6;
+            stroke-width: 2;
+        }
+        
+        .radar-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 0.8rem;
+        }
+        
+        .radar-legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+        
+        .legend-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .legend-healthcare {
+            background: #3b82f6;
+        }
+        
+        .legend-creative {
+            background: #8b5cf6;
+        }
+        
+        .legend-skilled {
+            background: #10b981;
+        }
+        
+        .skill-analysis {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 1px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-tab {
+            padding: 0.8rem 1.2rem;
+            font-size: 0.95rem;
+            color: #6b7280;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tab.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            font-weight: 500;
+        }
+        
+        .skill-tab-content {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .skill-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.3rem;
+        }
+        
+        .skill-info p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        
+        .resistance-score {
+            padding: 0.4rem 1rem;
+            background: #ecfdf5;
+            color: #059669;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+        
+        .skill-data-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .data-block {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .data-title {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        
+        .data-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .data-trend {
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+        
+        .trend-up {
+            color: #059669;
+        }
+        
+        .trend-down {
+            color: #dc2626;
+        }
+        
+        .demand-chart {
+            height: 180px;
+            margin-bottom: 1.5rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-column h4 {
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .skill-list {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .skill-list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .skill-list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-list-name {
+            font-size: 0.95rem;
+            color: #1f2937;
+        }
+        
+        .skill-list-value {
+            font-size: 0.9rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+        
+        .skill-portfolio {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-container {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .portfolio-builder {
+            flex: 1;
+        }
+        
+        .skill-selector {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .selector-heading {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-checkbox {
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-checkbox input {
+            margin-right: 0.8rem;
+            width: 18px;
+            height: 18px;
+            accent-color: #3b82f6;
+        }
+        
+        .skill-checkbox label {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+        
+        .skill-level-selector {
+            margin-bottom: 1.5rem;
+        }
+        
+        .level-selector-title {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+        
+        .level-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            outline: none;
+            margin-bottom: 0.5rem;
+        }
+        
+        .level-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+        }
+        
+        .level-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .add-skill-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+        
+        .add-skill-btn:hover {
+            background: #2563eb;
+        }
+        
+        .portfolio-results {
+            flex: 1;
+        }
+        
+        .results-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .results-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+        
+        .results-score {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #ecfdf5;
+            color: #059669;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .selected-skills {
+            margin-bottom: 1.5rem;
+        }
+        
+        .selected-skill-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .selected-skill-item:last-child {
+            border-bottom: none;
+        }
+        
+        .selected-skill-name {
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #3b82f6;
+            margin-right: 0.8rem;
+        }
+        
+        .career-matches {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .career-matches h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .career-match-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .career-match-item:last-child {
+            border-bottom: none;
+        }
+        
+        .career-info h5 {
+            font-size: 1rem;
+            color: #1f2937;
+            margin-bottom: 0.2rem;
+        }
+        
+        .career-sector {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .match-percentage {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #059669;
+        }
+        
+        .emerging-skills {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .combo-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .combo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .combo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .combo-title i {
+            margin-right: 0.8rem;
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+        
+        .combo-description {
+            color: #4b5563;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .combo-industries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .industry-tag {
+            padding: 0.3rem 0.8rem;
+            background: #e0e7ff;
+            color: #4f46e5;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        
+        .skill-resources {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-header {
+            background: #dbeafe;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        
+        .resource-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        
+        .resource-content {
+            padding: 1.5rem;
+        }
+        
+        .resource-description {
+            color: #4b5563;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .resource-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #3b82f6;
+            color: white;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-content">
+        <!-- SKILL CORRELATION MATRIX -->
+        <div class="skill-matrix">
+            <div class="section-header">
+                <h2 class="section-title">Skill Correlation Matrix</h2>
+                <p class="section-description">Discover how different human skills work together to create strong resistance against automation</p>
+            </div>
+            
+            <div class="matrix-container">
+                <div class="matrix-labels-y">
+                    <div class="matrix-label y-label">Empathy</div>
+                    <div class="matrix-label y-label">Creativity</div>
+                    <div class="matrix-label y-label">Complex Decision-Making</div>
+                    <div class="matrix-label y-label">Ethical Judgment</div>
+                    <div class="matrix-label y-label">Physical Dexterity</div>
+                    <div class="matrix-label y-label">Social Intelligence</div>
+                    <div class="matrix-label y-label">Cultural Competence</div>
+                    <div class="matrix-label y-label">Cross-Disciplinary Thinking</div>
+                </div>
+                
+                <div class="matrix-grid">
+                    <!-- Row 1 -->
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                    <div class="matrix-cell cell-level-4">4.2</div>
+                    <div class="matrix-cell cell-level-3">3.7</div>
+                    <div class="matrix-cell cell-level-5">4.8</div>
+                    <div class="matrix-cell cell-level-2">2.5</div>
+                    <div class="matrix-cell cell-level-5">4.9</div>
+                    <div class="matrix-cell cell-level-4">4.3</div>
+                    <div class="matrix-cell cell-level-3">3.8</div>
+                    
+                    <!-- Row 2 -->
+                    <div class="matrix-cell cell-level-4">4.2</div>
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                    <div class="matrix-cell cell-level-4">4.0</div>
+                    <div class="matrix-cell cell-level-3">3.5</div>
+                    <div class="matrix-cell cell-level-4">4.1</div>
+                    <div class="matrix-cell cell-level-3">3.8</div>
+                    <div class="matrix-cell cell-level-4">4.4</div>
+                    <div class="matrix-cell cell-level-5">4.7</div>
+                    
+                    <!-- Row 3 -->
+                    <div class="matrix-cell cell-level-3">3.7</div>
+                    <div class="matrix-cell cell-level-4">4.0</div>
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                    <div class="matrix-cell cell-level-5">4.9</div>
+                    <div class="matrix-cell cell-level-3">3.2</div>
+                    <div class="matrix-cell cell-level-4">4.1</div>
+                    <div class="matrix-cell cell-level-3">3.5</div>
+                    <div class="matrix-cell cell-level-4">4.3</div>
+                    
+                    <!-- Row 4 -->
+                    <div class="matrix-cell cell-level-5">4.8</div>
+                    <div class="matrix-cell cell-level-3">3.5</div>
+                    <div class="matrix-cell cell-level-5">4.9</div>
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                    <div class="matrix-cell cell-level-1">1.9</div>
+                    <div class="matrix-cell cell-level-4">4.2</div>
+                    <div class="matrix-cell cell-level-4">4.5</div>
+                    <div class="matrix-cell cell-level-3">3.7</div>
+                    
+                    <!-- Row 5 -->
+                    <div class="matrix-cell cell-level-2">2.5</div>
+                    <div class="matrix-cell cell-level-4">4.1</div>
+                    <div class="matrix-cell cell-level-3">3.2</div>
+                    <div class="matrix-cell cell-level-1">1.9</div>
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                    <div class="matrix-cell cell-level-2">2.3</div>
+                    <div class="matrix-cell cell-level-2">2.1</div>
+                    <div class="matrix-cell cell-level-3">3.6</div>
+                    
+                    <!-- Row 6 -->
+                    <div class="matrix-cell cell-level-5">4.9</div>
+                    <div class="matrix-cell cell-level-3">3.8</div>
+                    <div class="matrix-cell cell-level-4">4.1</div>
+                    <div class="matrix-cell cell-level-4">4.2</div>
+                    <div class="matrix-cell cell-level-2">2.3</div>
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                    <div class="matrix-cell cell-level-5">4.8</div>
+                    <div class="matrix-cell cell-level-3">3.5</div>
+                    
+                    <!-- Row 7 -->
+                    <div class="matrix-cell cell-level-4">4.3</div>
+                    <div class="matrix-cell cell-level-4">4.4</div>
+                    <div class="matrix-cell cell-level-3">3.5</div>
+                    <div class="matrix-cell cell-level-4">4.5</div>
+                    <div class="matrix-cell cell-level-2">2.1</div>
+                    <div class="matrix-cell cell-level-5">4.8</div>
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                    <div class="matrix-cell cell-level-4">4.0</div>
+                    
+                    <!-- Row 8 -->
+                    <div class="matrix-cell cell-level-3">3.8</div>
+                    <div class="matrix-cell cell-level-5">4.7</div>
+                    <div class="matrix-cell cell-level-4">4.3</div>
+                    <div class="matrix-cell cell-level-3">3.7</div>
+                    <div class="matrix-cell cell-level-3">3.6</div>
+                    <div class="matrix-cell cell-level-3">3.5</div>
+                    <div class="matrix-cell cell-level-4">4.0</div>
+                    <div class="matrix-cell cell-level-5">5.0</div>
+                </div>
+                
+                <div class="matrix-labels-x">
+                    <div class="matrix-label x-label">Empathy</div>
+                    <div class="matrix-label x-label">Creativity</div>
+                    <div class="matrix-label x-label">Complex Decision-Making</div>
+                    <div class="matrix-label x-label">Ethical Judgment</div>
+                    <div class="matrix-label x-label">Physical Dexterity</div>
+                    <div class="matrix-label x-label">Social Intelligence</div>
+                    <div class="matrix-label x-label">Cultural Competence</div>
+                    <div class="matrix-label x-label">Cross-Disciplinary Thinking</div>
+                </div>
+                
+                <div class="matrix-legend">
+                    <div class="legend-item">
+                        <div class="legend-color legend-high"></div>
+                        <span>High Correlation (4.5-5)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SKILL DISTRIBUTION BY INDUSTRY -->
+        <div class="skill-distribution">
+            <div class="radar-chart-container">
+                <h3 class="radar-title">Healthcare & Wellness</h3>
+                <div class="radar-chart">
+                    <svg viewBox="0 0 300 300">
+                        <!-- Background circles -->
+                        <circle cx="150" cy="150" r="120" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="90" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="60" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="30" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        
+                        <!-- Axis lines -->
+                        <line x1="150" y1="30" x2="150" y2="270" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="30" y1="150" x2="270" y2="150" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="67.5" y1="67.5" x2="232.5" y2="232.5" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="67.5" y1="232.5" x2="232.5" y2="67.5" stroke="#e5e7eb" stroke-width="1" />
+                        
+                        <!-- Data polygon -->
+                        <polygon points="150,45 100,80 70,150 100,220 150,255 210,210 240,150 200,80" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="2" />
+                        
+                        <!-- Axis labels -->
+                        <text x="150" y="20" text-anchor="middle" font-size="12" fill="#4b5563">Empathy</text>
+                        <text x="150" y="290" text-anchor="middle" font-size="12" fill="#4b5563">Physical Dexterity</text>
+                        <text x="10" y="150" text-anchor="middle" font-size="12" fill="#4b5563" transform="rotate(270,10,150)">Social Intelligence</text>
+                        <text x="290" y="150" text-anchor="middle" font-size="12" fill="#4b5563" transform="rotate(90,290,150)">Ethical Judgment</text>
+                        <text x="55" y="55" text-anchor="middle" font-size="12" fill="#4b5563">Cultural Competence</text>
+                        <text x="245" y="55" text-anchor="middle" font-size="12" fill="#4b5563">Creativity</text>
+                        <text x="55" y="245" text-anchor="middle" font-size="12" fill="#4b5563">Complex Decision-Making</text>
+                        <text x="245" y="245" text-anchor="middle" font-size="12" fill="#4b5563">Cross-Disciplinary</text>
+                    </svg>
+                </div>
+                <div class="radar-legend">
+                    <div class="radar-legend-item">
+                        <div class="legend-indicator legend-healthcare"></div>
+                        <span>Healthcare & Wellness</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="radar-chart-container">
+                <h3 class="radar-title">Creative Fields</h3>
+                <div class="radar-chart">
+                    <svg viewBox="0 0 300 300">
+                        <!-- Background circles -->
+                        <circle cx="150" cy="150" r="120" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="90" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="60" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="30" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        
+                        <!-- Axis lines -->
+                        <line x1="150" y1="30" x2="150" y2="270" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="30" y1="150" x2="270" y2="150" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="67.5" y1="67.5" x2="232.5" y2="232.5" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="67.5" y1="232.5" x2="232.5" y2="67.5" stroke="#e5e7eb" stroke-width="1" />
+                        
+                        <!-- Data polygon -->
+                        <polygon points="150,80 70,90 90,170 130,230 170,210 250,150 220,100 200,60" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2" />
+                        
+                        <!-- Axis labels -->
+                        <text x="150" y="20" text-anchor="middle" font-size="12" fill="#4b5563">Empathy</text>
+                        <text x="150" y="290" text-anchor="middle" font-size="12" fill="#4b5563">Physical Dexterity</text>
+                        <text x="10" y="150" text-anchor="middle" font-size="12" fill="#4b5563" transform="rotate(270,10,150)">Social Intelligence</text>
+                        <text x="290" y="150" text-anchor="middle" font-size="12" fill="#4b5563" transform="rotate(90,290,150)">Ethical Judgment</text>
+                        <text x="55" y="55" text-anchor="middle" font-size="12" fill="#4b5563">Cultural Competence</text>
+                        <text x="245" y="55" text-anchor="middle" font-size="12" fill="#4b5563">Creativity</text>
+                        <text x="55" y="245" text-anchor="middle" font-size="12" fill="#4b5563">Complex Decision-Making</text>
+                        <text x="245" y="245" text-anchor="middle" font-size="12" fill="#4b5563">Cross-Disciplinary</text>
+                    </svg>
+                </div>
+                <div class="radar-legend">
+                    <div class="radar-legend-item">
+                        <div class="legend-indicator legend-creative"></div>
+                        <span>Creative Fields</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="radar-chart-container">
+                <h3 class="radar-title">Skilled Trades</h3>
+                <div class="radar-chart">
+                    <svg viewBox="0 0 300 300">
+                        <!-- Background circles -->
+                        <circle cx="150" cy="150" r="120" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="90" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="60" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        <circle cx="150" cy="150" r="30" fill="none" stroke="#e5e7eb" stroke-width="1" />
+                        
+                        <!-- Axis lines -->
+                        <line x1="150" y1="30" x2="150" y2="270" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="30" y1="150" x2="270" y2="150" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="67.5" y1="67.5" x2="232.5" y2="232.5" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="67.5" y1="232.5" x2="232.5" y2="67.5" stroke="#e5e7eb" stroke-width="1" />
+                        
+                        <!-- Data polygon -->
+                        <polygon points="150,110 90,120 60,150 80,230 150,40 200,190 210,140 170,100" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" stroke-width="2" />
+                        
+                        <!-- Axis labels -->
+                        <text x="150" y="20" text-anchor="middle" font-size="12" fill="#4b5563">Empathy</text>
+                        <text x="150" y="290" text-anchor="middle" font-size="12" fill="#4b5563">Physical Dexterity</text>
+                        <text x="10" y="150" text-anchor="middle" font-size="12" fill="#4b5563" transform="rotate(270,10,150)">Social Intelligence</text>
+                        <text x="290" y="150" text-anchor="middle" font-size="12" fill="#4b5563" transform="rotate(90,290,150)">Ethical Judgment</text>
+                        <text x="55" y="55" text-anchor="middle" font-size="12" fill="#4b5563">Cultural Competence</text>
+                        <text x="245" y="55" text-anchor="middle" font-size="12" fill="#4b5563">Creativity</text>
+                        <text x="55" y="245" text-anchor="middle" font-size="12" fill="#4b5563">Complex Decision-Making</text>
+                        <text x="245" y="245" text-anchor="middle" font-size="12" fill="#4b5563">Cross-Disciplinary</text>
+                    </svg>
+                </div>
+                <div class="radar-legend">
+                    <div class="radar-legend-item">
+                        <div class="legend-indicator legend-skilled"></div>
+                        <span>Skilled Trades</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- INDIVIDUAL SKILL IMPACT ANALYSIS -->
+        <div class="skill-analysis">
+            <div class="section-header">
+                <h2 class="section-title">Individual Skill Impact Analysis</h2>
+                <p class="section-description">Explore the importance of specific human skills and their impact on automation resistance</p>
+            </div>
+            
+            <div class="skill-tabs">
+                <div class="skill-tab active">Empathy</div>
+                <div class="skill-tab">Creativity</div>
+                <div class="skill-tab">Complex Decision-Making</div>
+                <div class="skill-tab">Ethical Judgment</div>
+                <div class="skill-tab">Physical Dexterity</div>
+                <div class="skill-tab">Social Intelligence</div>
+                <div class="skill-tab">Cultural Competence</div>
+                <div class="skill-tab">Cross-Disciplinary Thinking</div>
+            </div>
+            
+            <div class="skill-tab-content">
+                <div class="skill-header">
+                    <div class="skill-icon">❤️</div>
+                    <div class="skill-info">
+                        <h3>Empathy</h3>
+                        <p>The ability to understand and share the feelings of another person</p>
+                    </div>
+                    <div class="resistance-score">9.5/10 Resistance Impact</div>
+                </div>
+                
+                <div class="skill-data-blocks">
+                    <div class="data-block">
+                        <div class="data-title">Current Market Demand</div>
+                        <div class="data-value">Very High</div>
+                        <div class="data-trend trend-up">↗ Increasing</div>
+                    </div>
+                    <div class="data-block">
+                        <div class="data-title">AI Capability Gap</div>
+                        <div class="data-value">Extreme</div>
+                        <div class="data-trend trend-up">↗ Widening</div>
+                    </div>
+                    <div class="data-block">
+                        <div class="data-title">Predicted Value (2035)</div>
+                        <div class="data-value">Critical</div>
+                        <div class="data-trend trend-up">↗ +38% growth</div>
+                    </div>
+                </div>
+                
+                <div class="demand-chart">
+                    <!-- Placeholder for demand projection chart -->
+                    <svg viewBox="0 0 500 150" width="100%" height="100%">
+                        <!-- Axes -->
+                        <line x1="50" y1="120" x2="450" y2="120" stroke="#e5e7eb" stroke-width="1" />
+                        <line x1="50" y1="30" x2="50" y2="120" stroke="#e5e7eb" stroke-width="1" />
+                        
+                        <!-- Y-axis labels -->
+                        <text x="45" y="30" text-anchor="end" font-size="12" fill="#6b7280">High</text>
+                        <text x="45" y="60" text-anchor="end" font-size="12" fill="#6b7280">Med</text>
+                        <text x="45" y="90" text-anchor="end" font-size="12" fill="#6b7280">Low</text>
+                        
+                        <!-- X-axis labels -->
+                        <text x="50" y="135" text-anchor="middle" font-size="12" fill="#6b7280">2025</text>
+                        <text x="183" y="135" text-anchor="middle" font-size="12" fill="#6b7280">2030</text>
+                        <text x="317" y="135" text-anchor="middle" font-size="12" fill="#6b7280">2035</text>
+                        <text x="450" y="135" text-anchor="middle" font-size="12" fill="#6b7280">2040</text>
+                        
+                        <!-- Data line -->
+                        <path d="M50,80 C100,70 150,60 183,50 C216,40 250,35 317,25 C384,15 420,10 450,5" fill="none" stroke="#3b82f6" stroke-width="3" />
+                        
+                        <!-- Data points -->
+                        <circle cx="50" cy="80" r="4" fill="#3b82f6" />
+                        <circle cx="183" cy="50" r="4" fill="#3b82f6" />
+                        <circle cx="317" cy="25" r="4" fill="#3b82f6" />
+                        <circle cx="450" cy="5" r="4" fill="#3b82f6" />
+                    </svg>
+                </div>
+                
+                <div class="skill-grid">
+                    <div class="skill-column">
+                        <h4>Primary Occupations</h4>
+                        <div class="skill-list">
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Mental Health Therapist</div>
+                                <div class="skill-list-value">97% resistant</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Palliative Care Nurse</div>
+                                <div class="skill-list-value">96% resistant</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Social Worker</div>
+                                <div class="skill-list-value">94% resistant</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Special Education Teacher</div>
+                                <div class="skill-list-value">92% resistant</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Crisis Counselor</div>
+                                <div class="skill-list-value">95% resistant</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-column">
+                        <h4>AI Limitations</h4>
+                        <div class="skill-list">
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Genuine emotional connection</div>
+                                <div class="skill-list-value">Extreme gap</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Non-verbal cue interpretation</div>
+                                <div class="skill-list-value">High gap</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Trauma-informed response</div>
+                                <div class="skill-list-value">Extreme gap</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Cultural emotional context</div>
+                                <div class="skill-list-value">High gap</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Authentic compassion</div>
+                                <div class="skill-list-value">Extreme gap</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-column">
+                        <h4>Development Pathways</h4>
+                        <div class="skill-list">
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Psychology/Counseling Education</div>
+                                <div class="skill-list-value">18-48 months</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Active Listening Certification</div>
+                                <div class="skill-list-value">3-6 months</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Trauma-Informed Care Training</div>
+                                <div class="skill-list-value">6-12 months</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Emotional Intelligence Coaching</div>
+                                <div class="skill-list-value">4-8 months</div>
+                            </div>
+                            <div class="skill-list-item">
+                                <div class="skill-list-name">Cross-Cultural Empathy Program</div>
+                                <div class="skill-list-value">6-9 months</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SKILL PORTFOLIO BUILDER -->
+        <div class="skill-portfolio">
+            <div class="section-header">
+                <h2 class="section-title">Skill Portfolio Builder</h2>
+                <p class="section-description">Build your personal skill portfolio and discover your automation resistance score</p>
+            </div>
+            
+            <div class="portfolio-container">
+                <div class="portfolio-builder">
+                    <div class="skill-selector">
+                        <h3 class="selector-heading">Select Your Skills</h3>
+                        <div class="skill-checkboxes">
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-empathy" checked>
+                                <label for="skill-empathy">Empathy</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-creativity">
+                                <label for="skill-creativity">Creativity</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-decision">
+                                <label for="skill-decision">Complex Decision-Making</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-ethics" checked>
+                                <label for="skill-ethics">Ethical Judgment</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-dexterity">
+                                <label for="skill-dexterity">Physical Dexterity</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-social" checked>
+                                <label for="skill-social">Social Intelligence</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-cultural">
+                                <label for="skill-cultural">Cultural Competence</label>
+                            </div>
+                            <div class="skill-checkbox">
+                                <input type="checkbox" id="skill-cross">
+                                <label for="skill-cross">Cross-Disciplinary Thinking</label>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-level-selector">
+                            <h4 class="level-selector-title">Skill Proficiency Level</h4>
+                            <input type="range" min="1" max="5" value="4" class="level-slider">
+                            <div class="level-labels">
+                                <span>Basic</span>
+                                <span>Intermediate</span>
+                                <span>Advanced</span>
+                            </div>
+                        </div>
+                        
+                        <button class="add-skill-btn">Update My Portfolio</button>
+                    </div>
+                </div>
+                
+                <div class="portfolio-results">
+                    <div class="results-card">
+                        <div class="results-header">
+                            <h3 class="results-title">Your Automation Resistance Score</h3>
+                            <div class="results-score">87%</div>
+                        </div>
+                        
+                        <div class="selected-skills">
+                            <div class="selected-skill-item">
+                                <div class="selected-skill-name">
+                                    <div class="skill-dot"></div>
+                                    Empathy
+                                </div>
+                                <div>Advanced (4/5)</div>
+                            </div>
+                            <div class="selected-skill-item">
+                                <div class="selected-skill-name">
+                                    <div class="skill-dot"></div>
+                                    Ethical Judgment
+                                </div>
+                                <div>Advanced (4/5)</div>
+                            </div>
+                            <div class="selected-skill-item">
+                                <div class="selected-skill-name">
+                                    <div class="skill-dot"></div>
+                                    Social Intelligence
+                                </div>
+                                <div>Advanced (4/5)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="career-matches">
+                        <h4>Recommended Career Matches</h4>
+                        <div class="career-match-item">
+                            <div class="career-info">
+                                <h5>Mental Health Counselor</h5>
+                                <div class="career-sector">Healthcare & Wellness</div>
+                            </div>
+                            <div class="match-percentage">94%</div>
+                        </div>
+                        <div class="career-match-item">
+                            <div class="career-info">
+                                <h5>Social Services Coordinator</h5>
+                                <div class="career-sector">Social Services</div>
+                            </div>
+                            <div class="match-percentage">92%</div>
+                        </div>
+                        <div class="career-match-item">
+                            <div class="career-info">
+                                <h5>Community Health Advocate</h5>
+                                <div class="career-sector">Healthcare & Wellness</div>
+                            </div>
+                            <div class="match-percentage">89%</div>
+                        </div>
+                        <div class="career-match-item">
+                            <div class="career-info">
+                                <h5>Ethics Advisor</h5>
+                                <div class="career-sector">Various Industries</div>
+                            </div>
+                            <div class="match-percentage">85%</div>
+                        </div>
+                        <div class="career-match-item">
+                            <div class="career-info">
+                                <h5>Human Resources Specialist</h5>
+                                <div class="career-sector">Business Services</div>
+                            </div>
+                            <div class="match-percentage">82%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EMERGING SKILL COMBINATIONS -->
+        <div class="emerging-skills">
+            <div class="section-header">
+                <h2 class="section-title">Emerging Skill Combinations</h2>
+                <p class="section-description">New high-value skill pairings that create exceptional resistance to automation</p>
+            </div>
+            
+            <div class="combo-grid">
+                <div class="combo-card">
+                    <h3 class="combo-title"><i>🧠</i> Technical Literacy + Emotional Intelligence</h3>
+                    <p class="combo-description">The ability to understand complex technical systems while also empathizing with the human users of those systems. Creates professionals who can translate between technical and human needs.</p>
+                    <div class="combo-industries">
+                        <div class="industry-tag">Healthcare Tech</div>
+                        <div class="industry-tag">UX Design</div>
+                        <div class="industry-tag">AI Ethics</div>
+                    </div>
+                </div>
+                
+                <div class="combo-card">
+                    <h3 class="combo-title"><i>📊</i> Data Interpretation + Ethical Judgment</h3>
+                    <p class="combo-description">The ability to analyze complex data sets while considering the ethical implications of how that data is used. Critical for professionals who ensure algorithmic fairness and responsible data usage.</p>
+                    <div class="combo-industries">
+                        <div class="industry-tag">Privacy</div>
+                        <div class="industry-tag">Governance</div>
+                        <div class="industry-tag">Financial Services</div>
+                    </div>
+                </div>
+                
+                <div class="combo-card">
+                    <h3 class="combo-title"><i>🌐</i> Cross-Cultural Communication + Creative Problem-Solving</h3>
+                    <p class="combo-description">The ability to navigate diverse cultural contexts while developing innovative solutions that work across boundaries. Essential for global challenges requiring nuanced human perspectives.</p>
+                    <div class="combo-industries">
+                        <div class="industry-tag">International Development</div>
+                        <div class="industry-tag">Global Health</div>
+                        <div class="industry-tag">Crisis Response</div>
+                    </div>
+                </div>
+                
+                <div class="combo-card">
+                    <h3 class="combo-title"><i>🤝</i> Human-Machine Collaboration + Empathetic Leadership</h3>
+                    <p class="combo-description">The ability to effectively work alongside AI systems while maintaining human-centered leadership that prioritizes wellbeing and emotional needs of teams in digitally transformed environments.</p>
+                    <div class="combo-industries">
+                        <div class="industry-tag">Future of Work</div>
+                        <div class="industry-tag">Digital Transformation</div>
+                        <div class="industry-tag">Change Management</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SKILL DEVELOPMENT RESOURCES -->
+        <div class="skill-resources">
+            <div class="section-header">
+                <h2 class="section-title">Skill Development Resources</h2>
+                <p class="section-description">Educational opportunities to strengthen your human capabilities</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">🎓</div>
+                        <h3 class="resource-title">Educational Programs</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p class="resource-description">Formal education programs specifically designed to develop high-value human skills that complement rather than compete with AI capabilities.</p>
+                        <a href="#" class="resource-link">Browse Programs</a>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">📝</div>
+                        <h3 class="resource-title">Skill Certifications</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p class="resource-description">Industry-recognized certifications that validate your human skills and demonstrate your value in the age of automation to potential employers.</p>
+                        <a href="#" class="resource-link">Find Certifications</a>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">📊</div>
+                        <h3 class="resource-title">Assessment Tools</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p class="resource-description">Professional assessment instruments that help you identify your natural human skill strengths and areas for development.</p>
+                        <a href="#" class="resource-link">Take Assessments</a>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">👥</div>
+                        <h3 class="resource-title">Mentorship Connections</h3>
+                    </div>
+                    <div class="resource-content">
+                        <p class="resource-description">Connect with professionals who excel in specific human skills and can provide guidance on developing these capabilities in your career.</p>
+                        <a href="#" class="resource-link">Find Mentors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>d-color legend-low"></div>
+                        <span>Low Correlation (1-2)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-medium-low"></div>
+                        <span>Medium-Low (2-3)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-medium"></div>
+                        <span>Medium (3-4)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-medium-high"></div>
+                        <span>Medium-High (4-4.5)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legen
