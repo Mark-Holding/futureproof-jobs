@@ -38,9 +38,9 @@ export default function Header() {
               </li>
               <li>
                 <Link 
-                  href="/careers" 
+                  href="/career-paths" 
                   className={`text-white hover:text-green-400 font-medium transition-colors ${
-                    pathname.startsWith('/careers') ? 'text-green-400' : ''
+                    pathname.startsWith('/career-paths') ? 'text-green-400' : ''
                   }`}
                 >
                   Career Paths
