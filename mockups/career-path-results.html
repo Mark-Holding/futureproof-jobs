@@ -1,0 +1,2046 @@
+        .plan-tab.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            font-weight: 500;
+        }
+        
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .action-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .action-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .action-priority {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .priority-now {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .priority-soon {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .priority-planned {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .action-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .action-step {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .step-checkbox {
+            margin-right: 0.8rem;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-text {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin-bottom: 0.3rem;
+            line-height: 1.5;
+        }
+        
+        .step-timeline {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .step-resources {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .resources-label {
+            color: #6b7280;
+            margin-right: 0.5rem;
+        }
+        
+        .resource-link {
+            color: #3b82f6;
+            text-decoration: none;
+            margin-left: 0.3rem;
+        }
+        
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container">
+        <!-- HEADER SECTION -->
+        <div class="results-header">
+            <div class="results-info">
+                <div class="person-details">
+                    <h1 class="person-name">Sarah Johnson</h1>
+                    <div class="current-position">Marketing Specialist at TechCorp</div>
+                    <div class="path-type">Recommended Pathway: The Integrator</div>
+                    <div class="generation-date">Generated on May 10, 2025</div>
+                    
+                    <div class="export-buttons">
+                        <button class="export-button download-btn">
+                            <span>📥</span> Download PDF
+                        </button>
+                        <button class="export-button share-btn">
+                            <span>🔗</span> Share Path
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="risk-assessment">
+                    <div class="risk-score">
+                        <div class="score-circle">
+                            <div class="score-value">35%</div>
+                        </div>
+                    </div>
+                    <div class="risk-label">Current Role Automation Risk</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="executive-summary">
+            <h2 class="section-title">Executive Summary</h2>
+            <div class="summary-content">
+                <p>Based on your profile as a Marketing Specialist with strong creative and analytical skills, we recommend the "Integrator" pathway to leverage your unique human capabilities alongside advancing AI systems. Your current role faces a moderate automation risk of 35%, primarily in data analysis and basic content creation aspects.</p>
+                <p>We've mapped a 5-year trajectory toward becoming a Human-AI Marketing Strategist, where you'll lead the integration of AI tools with human creativity and relationship-building to deliver high-impact marketing campaigns. This role has a projected 92% resistance to automation and leverages your existing skills while developing new capabilities in AI collaboration.</p>
+            </div>
+            
+            <div class="summary-highlights">
+                <div class="highlight-card">
+                    <div class="highlight-icon">🎯</div>
+                    <div class="highlight-content">
+                        <div class="highlight-title">Destination Role</div>
+                        <div class="highlight-description">Human-AI Marketing Strategist at a technology or creative agency (92% resistance score)</div>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">⏱️</div>
+                    <div class="highlight-content">
+                        <div class="highlight-title">Timeline</div>
+                        <div class="highlight-description">5-year progressive path with two strategic intermediate roles</div>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">🧠</div>
+                    <div class="highlight-content">
+                        <div class="highlight-title">Key Skills to Develop</div>
+                        <div class="highlight-description">AI-Human Collaboration, Strategic Marketing, Emotional Intelligence, Systems Thinking</div>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">🔄</div>
+                    <div class="highlight-content">
+                        <div class="highlight-title">Transferable Strengths</div>
+                        <div class="highlight-description">Creative Content Development, Analytics Understanding, Client Communication</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PERSONALIZED CAREER TIMELINE -->
+        <div class="career-timeline">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Your Personalized Career Timeline</h2>
+                <div class="timeline-views">
+                    <div class="timeline-view active">Role Progression</div>
+                    <div class="timeline-view">Skill Development</div>
+                    <div class="timeline-view">Financial Projection</div>
+                </div>
+            </div>
+            
+            <div class="timeline-visualization">
+                <div class="timeline-track">
+                    <div class="track-progress"></div>
+                </div>
+                
+                <div class="timeline-milestones">
+                    <div class="timeline-milestone">
+                        <div class="milestone-dot current"></div>
+                        <div class="milestone-date">Present</div>
+                        <div class="milestone-role">Marketing Specialist</div>
+                        <div class="milestone-company">TechCorp</div>
+                    </div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone-dot future"></div>
+                        <div class="milestone-date">1-2 Years</div>
+                        <div class="milestone-role">Content Strategist</div>
+                        <div class="milestone-company">Digital Agency</div>
+                    </div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone-dot future"></div>
+                        <div class="milestone-date">2-3 Years</div>
+                        <div class="milestone-role">AI-Enhanced Marketing Lead</div>
+                        <div class="milestone-company">Tech or Creative Firm</div>
+                    </div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone-dot future"></div>
+                        <div class="milestone-date">4-5 Years</div>
+                        <div class="milestone-role">Human-AI Marketing Strategist</div>
+                        <div class="milestone-company">Leading Agency or In-house</div>
+                    </div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone-dot future"></div>
+                        <div class="milestone-date">Beyond</div>
+                        <div class="milestone-role">Marketing Innovation Director</div>
+                        <div class="milestone-company">Enterprise or Consultancy</div>
+                    </div>
+                </div>
+                
+                <div class="alternate-paths">
+                    <div class="alternate-path path-a"></div>
+                    <div class="alternate-path path-b"></div>
+                    <div class="alternate-milestone alternate-a"></div>
+                    <div class="alternate-milestone alternate-b"></div>
+                    <div class="alternate-label label-a">Brand Experience Director</div>
+                    <div class="alternate-label label-b">Marketing AI Consultant</div>
+                </div>
+            </div>
+            
+            <div class="timeline-details">
+                <div class="detail-tabs">
+                    <div class="detail-tab active">Phase 1: Content Strategist</div>
+                    <div class="detail-tab">Phase 2: AI-Enhanced Marketing</div>
+                    <div class="detail-tab">Phase 3: Human-AI Strategist</div>
+                </div>
+                
+                <div class="milestone-detail">
+                    <h3 class="detail-title">Content Strategist (1-2 Years)</h3>
+                    <p class="detail-description">This role focuses on developing sophisticated content strategy that leverages data insights while maintaining a human-centered approach. You'll work closely with AI tools for analytics and basic content generation while providing the creative direction and emotional intelligence that automation cannot replicate.</p>
+                    
+                    <div class="detail-list">
+                        <h4 class="detail-list-title">Key Responsibilities</h4>
+                        <div class="detail-item">
+                            <div class="detail-text">Develop comprehensive content strategies aligned with brand values and audience needs</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-text">Leverage AI tools for content analytics, basic generation, and optimization</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-text">Oversee content creation across multiple platforms and formats</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-text">Establish metrics for measuring content effectiveness and brand resonance</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-list">
+                        <h4 class="detail-list-title">Skill Development Focus</h4>
+                        <div class="detail-item">
+                            <div class="detail-text">Strategic thinking in content development and audience engagement</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-text">Basic understanding of AI content tools and their capabilities/limitations</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-text">Advanced storytelling across multiple platforms and formats</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-text">Data interpretation for content optimization while maintaining human voice</div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="view-button">View Available Positions</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SKILLS DEVELOPMENT PLAN -->
+        <div class="skills-development">
+            <h2 class="section-title">Skills Development Plan</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">🧠</div>
+                        <div class="category-title">Strategic Thinking</div>
+                    </div>
+                    
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">Systems Thinking</div>
+                                <div class="skill-priority priority-critical">Critical</div>
+                            </div>
+                            <div class="skill-description">
+                                The ability to understand how different marketing elements and platforms interact as part of a larger ecosystem.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">6-9 months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">Strategic Campaign Planning</div>
+                                <div class="skill-priority priority-high">High</div>
+                            </div>
+                            <div class="skill-description">
+                                Creating integrated marketing strategies that align business objectives, audience needs, and technological capabilities.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">3-6 months</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">🤖</div>
+                        <div class="category-title">AI Collaboration</div>
+                    </div>
+                    
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">AI Marketing Tool Proficiency</div>
+                                <div class="skill-priority priority-critical">Critical</div>
+                            </div>
+                            <div class="skill-description">
+                                Advanced understanding of AI-powered marketing tools and how to direct them effectively toward strategic goals.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">9-12 months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">Human-AI Workflow Design</div>
+                                <div class="skill-priority priority-high">High</div>
+                            </div>
+                            <div class="skill-description">
+                                Creating effective workflows that leverage AI for routine tasks while applying human creativity and judgment for high-value elements.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">6-9 months</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">👥</div>
+                        <div class="category-title">Human Connection</div>
+                    </div>
+                    
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">Advanced Emotional Intelligence</div>
+                                <div class="skill-priority priority-critical">Critical</div>
+                            </div>
+                            <div class="skill-description">
+                                Deeply understanding audience emotions and motivations to create resonant marketing that AI cannot replicate.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">12-18 months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">Cross-Cultural Communication</div>
+                                <div class="skill-priority priority-medium">Medium</div>
+                            </div>
+                            <div class="skill-description">
+                                The ability to adapt marketing communications across diverse cultural contexts with appropriate sensitivity.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">6-12 months</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">💼</div>
+                        <div class="category-title">Business Acumen</div>
+                    </div>
+                    
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">Marketing ROI Analysis</div>
+                                <div class="skill-priority priority-high">High</div>
+                            </div>
+                            <div class="skill-description">
+                                Sophisticated analysis of marketing performance that goes beyond metrics to understand true business impact.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">3-6 months</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="skill-name">Strategic Stakeholder Management</div>
+                                <div class="skill-priority priority-medium">Medium</div>
+                            </div>
+                            <div class="skill-description">
+                                Building relationships and managing expectations across diverse business stakeholders and technical teams.
+                            </div>
+                            <div class="skill-development">
+                                <div class="development-label">Development Time:</div>
+                                <div class="development-time">6-9 months</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STRATEGIC TRANSITION POINTS -->
+        <div class="transition-points">
+            <div class="transition-header">
+                <h2 class="section-title">Strategic Transition Points</h2>
+                <div class="transition-tabs">
+                    <div class="transition-tab active">Transition 1</div>
+                    <div class="transition-tab">Transition 2</div>
+                    <div class="transition-tab">Transition 3</div>
+                </div>
+            </div>
+            
+            <div class="transition-content">
+                <div class="transition-left">
+                    <div class="transition-from-to">
+                        <div class="transition-role">
+                            <div class="role-title">Marketing Specialist</div>
+                            <div class="role-company">TechCorp</div>
+                        </div>
+                        
+                        <div class="transition-arrow">
+                            <div class="timeline-estimate">12-18 months</div>
+                            <div class="arrow">→</div>
+                        </div>
+                        
+                        <div class="transition-role">
+                            <div class="role-title">Content Strategist</div>
+                            <div class="role-company">Digital Agency</div>
+                        </div>
+                    </div>
+                    
+                    <div class="transition-details">
+                        <h3 class="details-title">Timing Recommendations</h3>
+                        <div class="details-content">
+                            <p>Optimal timing for this transition is 12-18 months from now, when you've built sufficient expertise in your current role while AI content generation tools become more mainstream in marketing departments. This timing allows you to position yourself at the forefront of the human-AI collaboration trend.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="transition-details">
+                        <h3 class="details-title">Educational Requirements</h3>
+                        <div class="details-content">
+                            <p>This transition requires developing specific knowledge and skills in content strategy and AI tools:</p>
+                            <div class="requirement-list">
+                                <div class="requirement-item">
+                                    <div class="requirement-text">Content Strategy Certification (recommended: Content Marketing Institute or similar)</div>
+                                </div>
+                                <div class="requirement-item">
+                                    <div class="requirement-text">Training in AI marketing tools (specific courses in GPT, Jasper, or similar platforms)</div>
+                                </div>
+                                <div class="requirement-item">
+                                    <div class="requirement-text">Data analytics for content performance (Google Analytics certification or similar)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transition-details">
+                        <h3 class="details-title">Financial Planning</h3>
+                        <div class="details-content">
+                            <p>This transition is likely to involve a 15-20% salary increase, but may require investment in education and possibly a period of adjustment. Financial planning should include:</p>
+                            <div class="requirement-list">
+                                <div class="requirement-item">
+                                    <div class="requirement-text">Budget $2,000-$3,500 for necessary certifications and courses</div>
+                                </div>
+                                <div class="requirement-item">
+                                    <div class="requirement-text">Emergency fund covering 3-6 months of expenses during transition</div>
+                                </div>
+                                <div class="requirement-item">
+                                    <div class="requirement-text">Potential relocation costs if moving to a hub city for digital agencies</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="transition-right">
+                    <div class="risk-assessment-card">
+                        <div class="risk-header">
+                            <div class="risk-title">Risk Assessment</div>
+                            <div class="risk-level risk-moderate">Moderate Risk</div>
+                        </div>
+                        <div class="risk-description">
+                            This transition involves moderate risk as you'll be moving from a potentially stable corporate role to the more dynamic agency environment while developing new skills simultaneously.
+                        </div>
+                        <div class="mitigation-strategies">
+                            <div class="mitigation-title">Risk Mitigation Strategies</div>
+                            <div class="strategy-list">
+                                <div class="strategy-item">
+                                    <div class="strategy-text">Build a portfolio of content strategy work while in your current role</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-text">Develop relationships with agencies through networking before making the transition</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-text">Consider freelance content strategy projects to build credibility</div>
+                                </div>
+                                <div class="strategy-item">
+                                    <div class="strategy-text">Maintain strong relationships with current colleagues for future opportunities</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="readiness-card">
+                        <h3 class="details-title">Transition Readiness Indicators</h3>
+                        <div class="readiness-indicators">
+                            <div class="readiness-indicator">
+                                <div class="indicator-label">
+                                    <div class="indicator-name">Content Strategy Skills</div>
+                                    <div class="indicator-value">65%</div>
+                                </div>
+                                <div class="indicator-bar">
+                                    <div class="indicator-progress" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="readiness-indicator">
+                                <div class="indicator-label">
+                                    <div class="indicator-name">AI Tools Familiarity</div>
+                                    <div class="indicator-value">40%</div>
+                                </div>
+                                <div class="indicator-bar">
+                                    <div class="indicator-progress" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="readiness-indicator">
+                                <div class="indicator-label">
+                                    <div class="indicator-name">Portfolio Development</div>
+                                    <div class="indicator-value">50%</div>
+                                </div>
+                                <div class="indicator-bar">
+                                    <div class="indicator-progress" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="readiness-indicator">
+                                <div class="indicator-label">
+                                    <div class="indicator-name">Network Development</div>
+                                    <div class="indicator-value">35%</div>
+                                </div>
+                                <div class="indicator-bar">
+                                    <div class="indicator-progress" style="width: 35%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="readiness-indicator">
+                                <div class="indicator-label">
+                                    <div class="indicator-name">Financial Preparation</div>
+                                    <div class="indicator-value">60%</div>
+                                </div>
+                                <div class="indicator-bar">
+                                    <div class="indicator-progress" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI RESISTANCE STRATEGY -->
+        <div class="ai-resistance">
+            <h2 class="section-title">AI Resistance Strategy</h2>
+            
+            <div class="resistance-blocks">
+                <div class="resistance-block">
+                    <div class="resistance-header">
+                        <div class="resistance-icon">🛡️</div>
+                        <div class="resistance-title">Human-Centered Value</div>
+                    </div>
+                    <div class="resistance-description">
+                        Your highest resistance to automation comes from developing deep emotional intelligence and creative judgment that AI systems cannot replicate. Focus on the uniquely human aspects of your role.
+                    </div>
+                    <div class="resistance-examples">
+                        <div class="examples-title">Key Areas to Develop</div>
+                        <div class="examples-list">
+                            <div class="example-item">
+                                <div class="example-text">Advanced audience empathy and emotional understanding</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Creative concept development based on cultural insights</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Building authentic relationships with clients and stakeholders</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Ethical judgment in sensitive marketing contexts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resistance-block">
+                    <div class="resistance-header">
+                        <div class="resistance-icon">🤝</div>
+                        <div class="resistance-title">AI Complementarity</div>
+                    </div>
+                    <div class="resistance-description">
+                        Position yourself as an expert in leveraging AI tools rather than competing with them. Develop skills in orchestrating AI systems toward strategic human goals rather than performing tasks AI can handle.
+                    </div>
+                    <div class="resistance-examples">
+                        <div class="examples-title">Key Areas to Develop</div>
+                        <div class="examples-list">
+                            <div class="example-item">
+                                <div class="example-text">AI direction and prompt engineering expertise</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Human quality assurance and refinement of AI outputs</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Strategic application of AI tools within larger campaigns</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Translation between technical capabilities and business needs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resistance-block">
+                    <div class="resistance-header">
+                        <div class="resistance-icon">🔍</div>
+                        <div class="resistance-title">Emerging Specializations</div>
+                    </div>
+                    <div class="resistance-description">
+                        Several emerging specializations within marketing offer particularly high resistance to automation. Consider developing expertise in these areas as you progress through your career path.
+                    </div>
+                    <div class="resistance-examples">
+                        <div class="examples-title">High-Resistance Specializations</div>
+                        <div class="examples-list">
+                            <div class="example-item">
+                                <div class="example-text">Brand purpose and values articulation</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Cross-cultural marketing strategy</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">AI-human experience design</div>
+                            </div>
+                            <div class="example-item">
+                                <div class="example-text">Marketing ethics and governance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PERSONALIZED SUCCESS STORIES -->
+        <div class="success-stories">
+            <h2 class="section-title">Personalized Success Stories</h2>
+            
+            <div class="story-cards">
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="avatar">MR</div>
+                        <div class="story-info">
+                            <div class="person-info">Michael Rodriguez</div>
+                            <div class="career-path">
+                                Marketing Coordinator <span class="path-arrow">→</span> AI Marketing Director
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <div class="story-text">
+                            "I was working as a marketing coordinator when AI began automating many of the analytical and basic content creation tasks I handled. Rather than resisting the change, I leaned into it by taking courses in AI marketing tools and building expertise in how to direct these tools strategically. I positioned myself as the bridge between AI capabilities and marketing strategy, focusing on the human elements that machines couldn't replicate while leveraging AI for efficiency. Within four years, I had progressed to becoming an AI Marketing Director, where I now lead a team that combines human creativity with AI capabilities."
+                        </div>
+                        
+                        <div class="key-learnings">
+                            <div class="learnings-title">Key Takeaways</div>
+                            <div class="learnings-list">
+                                <div class="learning-item">
+                                    <div class="learning-text">Be proactive in learning AI marketing tools rather than avoiding them</div>
+                                </div>
+                                <div class="learning-item">
+                                    <div class="learning-text">Focus on developing strategic direction skills rather than execution</div>
+                                </div>
+                                <div class="learning-item">
+                                    <div class="learning-text">Position yourself as the bridge between technology and creative strategy</div>
+                                </div>
+                                <div class="learning-item">
+                                    <div class="learning-text">Build a portfolio that showcases your ability to direct AI tools effectively</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="avatar">JL</div>
+                        <div class="story-info">
+                            <div class="person-info">Jennifer Lee</div>
+                            <div class="career-path">
+                                Digital Marketing Specialist <span class="path-arrow">→</span> Human-AI Experience Director
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <div class="story-text">
+                            "I started in digital marketing just as AI tools were beginning to transform the industry. I noticed that while AI could handle data analysis and generate basic content, it struggled with understanding emotional resonance and cultural nuance. I developed expertise in the human elements of marketing that AI couldn't replicate—empathy, cultural understanding, and creative insight—while also becoming proficient in directing AI tools. I created a niche for myself by focusing on the integration of AI capabilities with human emotional intelligence. Today, I lead a team that creates marketing experiences that leverage the best of both human creativity and AI efficiency, earning significantly more than in my previous role."
+                        </div>
+                        
+                        <div class="key-learnings">
+                            <div class="learnings-title">Key Takeaways</div>
+                            <div class="learnings-list">
+                                <div class="learning-item">
+                                    <div class="learning-text">Identify the aspects of marketing that require human emotional intelligence</div>
+                                </div>
+                                <div class="learning-item">
+                                    <div class="learning-text">Develop deep expertise in cultural and emotional elements of campaigns</div>
+                                </div>
+                                <div class="learning-item">
+                                    <div class="learning-text">Learn to balance quantitative AI insights with qualitative human understanding</div>
+                                </div>
+                                <div class="learning-item">
+                                    <div class="learning-text">Create frameworks for integrating AI tools with human creative processes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ACTION PLAN DASHBOARD -->
+        <div class="action-plan">
+            <h2 class="section-title">Action Plan Dashboard</h2>
+            
+            <div class="plan-tabs">
+                <div class="plan-tab active">30-Day Actions</div>
+                <div class="plan-tab">90-Day Milestones</div>
+                <div class="plan-tab">6-Month Assessment</div>
+            </div>
+            
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-header">
+                        <div class="action-title">Skill Development</div>
+                        <div class="action-priority priority-now">Start Now</div>
+                    </div>
+                    <div class="action-items">
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Register for "AI for Content Marketers" online certification course</div>
+                                <div class="step-timeline">Complete by: Week 1</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resource:</div>
+                                    <a href="#" class="resource-link">Course Link</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Begin Advanced Content Strategy learning path on LinkedIn Learning</div>
+                                <div class="step-timeline">Start by: Week 2</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resource:</div>
+                                    <a href="#" class="resource-link">Learning Path</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Schedule 1 hour per day for hands-on practice with AI marketing tools</div>
+                                <div class="step-timeline">Ongoing: Daily</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-card">
+                    <div class="action-header">
+                        <div class="action-title">Portfolio Building</div>
+                        <div class="action-priority priority-soon">Within 2 Weeks</div>
+                    </div>
+                    <div class="action-items">
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Create a portfolio website highlighting your strategic marketing work</div>
+                                <div class="step-timeline">Complete by: Week 3</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resources:</div>
+                                    <a href="#" class="resource-link">Portfolio Template</a>,
+                                    <a href="#" class="resource-link">Example Sites</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Document a case study of an AI-assisted marketing project you've worked on</div>
+                                <div class="step-timeline">Complete by: Week 4</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resource:</div>
+                                    <a href="#" class="resource-link">Case Study Framework</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Create a sample content strategy that showcases AI integration with human creativity</div>
+                                <div class="step-timeline">Complete by: Week 4</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-card">
+                    <div class="action-header">
+                        <div class="action-title">Networking</div>
+                        <div class="action-priority priority-soon">Within 2 Weeks</div>
+                    </div>
+                    <div class="action-items">
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Join "AI in Marketing" professional groups on LinkedIn and participate actively</div>
+                                <div class="step-timeline">Join by: Week 1</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resources:</div>
+                                    <a href="#" class="resource-link">Recommended Groups</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Schedule informational interviews with 2-3 Content Strategists at agencies</div>
+                                <div class="step-timeline">Complete by: Week 3</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resource:</div>
+                                    <a href="#" class="resource-link">Outreach Templates</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Register for upcoming AI Marketing conference or virtual event</div>
+                                <div class="step-timeline">Complete by: Week 2</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resource:</div>
+                                    <a href="#" class="resource-link">Event Calendar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-card">
+                    <div class="action-header">
+                        <div class="action-title">Financial Preparation</div>
+                        <div class="action-priority priority-planned">Within 30 Days</div>
+                    </div>
+                    <div class="action-items">
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Create a budget for career transition expenses including courses and certifications</div>
+                                <div class="step-timeline">Complete by: Week 2</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resource:</div>
+                                    <a href="#" class="resource-link">Transition Budget Template</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Start saving additional 10% of income toward transition emergency fund</div>
+                                <div class="step-timeline">Start by: Week 1</div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-step">
+                            <input type="checkbox" class="step-checkbox">
+                            <div class="step-content">
+                                <div class="step-text">Research salary ranges for Content Strategist roles in target locations</div>
+                                <div class="step-timeline">Complete by: Week 4</div>
+                                <div class="step-resources">
+                                    <div class="resources-label">Resource:</div>
+                                    <a href="#" class="resource-link">Salary Guide</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureProof Jobs - Your Personalized Career Path</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .results-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .person-details {
+            flex: 1;
+        }
+        
+        .person-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .current-position {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .path-type {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .generation-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .risk-assessment {
+            text-align: center;
+            margin-left: 2rem;
+        }
+        
+        .risk-score {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+        }
+        
+        .score-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .score-circle::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            background: #ef4444;
+            z-index: 0;
+        }
+        
+        .score-value {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .risk-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .export-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .export-button {
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn {
+            background: white;
+            color: #1e3a8a;
+            border: none;
+        }
+        
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .share-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .share-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .executive-summary {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .summary-content {
+            color: #4b5563;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .summary-highlights {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .highlight-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            background: #dbeafe;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .highlight-content {
+            flex: 1;
+        }
+        
+        .highlight-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+        
+        .highlight-description {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .career-timeline {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        
+        .timeline-views {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .timeline-view {
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-view.active {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #93c5fd;
+        }
+        
+        .timeline-visualization {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-track {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            z-index: 0;
+        }
+        
+        .track-progress {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+            border-radius: 2px;
+            width: 30%;
+        }
+        
+        .timeline-milestones {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .timeline-milestone {
+            text-align: center;
+            width: 20%;
+            position: relative;
+        }
+        
+        .milestone-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            border: 6px solid #3b82f6;
+            margin: 0 auto 1rem;
+        }
+        
+        .milestone-dot.current {
+            background: #3b82f6;
+        }
+        
+        .milestone-dot.future {
+            border-color: #9ca3af;
+        }
+        
+        .milestone-date {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        
+        .milestone-role {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .milestone-company {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .alternate-paths {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding-top: 8rem;
+        }
+        
+        .alternate-path {
+            position: absolute;
+            height: 30px;
+            border-left: 2px dashed #9ca3af;
+            border-top: 2px dashed #9ca3af;
+            border-top-left-radius: 10px;
+            z-index: 0;
+        }
+        
+        .path-a {
+            left: 80%;
+            width: 8%;
+            top: 50px;
+        }
+        
+        .path-b {
+            left: 50%;
+            width: 12%;
+            top: 80px;
+        }
+        
+        .alternate-milestone {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #9ca3af;
+        }
+        
+        .alternate-a {
+            top: 50px;
+            left: 88%;
+        }
+        
+        .alternate-b {
+            top: 80px;
+            left: 62%;
+        }
+        
+        .alternate-label {
+            position: absolute;
+            font-size: 0.8rem;
+            color: #6b7280;
+            width: 120px;
+            text-align: center;
+        }
+        
+        .label-a {
+            top: 30px;
+            left: calc(88% - 60px);
+        }
+        
+        .label-b {
+            top: 60px;
+            left: calc(62% - 60px);
+        }
+        
+        .timeline-details {
+            margin-top: 2rem;
+        }
+        
+        .detail-tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+        
+        .detail-tab {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            color: #6b7280;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .detail-tab.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            font-weight: 500;
+        }
+        
+        .milestone-detail {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .detail-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        
+        .detail-description {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        
+        .detail-list {
+            margin-bottom: 1.5rem;
+        }
+        
+        .detail-list-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        
+        .detail-item::before {
+            content: '•';
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            line-height: 1;
+        }
+        
+        .detail-text {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        
+        .view-button {
+            display: inline-block;
+            padding: 0.7rem 1.2rem;
+            background: #3b82f6;
+            color: white;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .view-button:hover {
+            background: #2563eb;
+        }
+        
+        .skills-development {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-category {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            background: #dbeafe;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .skill-item {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1f2937;
+        }
+        
+        .skill-priority {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .priority-critical {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .priority-high {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .priority-medium {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .skill-description {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.8rem;
+        }
+        
+        .skill-development {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+        
+        .development-label {
+            margin-right: 0.5rem;
+        }
+        
+        .development-time {
+            font-weight: 500;
+            color: #1f2937;
+        }
+        
+        .transition-points {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .transition-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .transition-tabs {
+            display: flex;
+        }
+        
+        .transition-tab {
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            font-size: 0.9rem;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .transition-tab:first-child {
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+        
+        .transition-tab:last-child {
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        
+        .transition-tab.active {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #93c5fd;
+        }
+        
+        .transition-content {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .transition-left {
+            flex: 1;
+        }
+        
+        .transition-from-to {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .transition-role {
+            text-align: center;
+            width: 42%;
+        }
+        
+        .role-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+        
+        .role-company {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .transition-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .arrow {
+            font-size: 1.5rem;
+            margin: 0.3rem 0;
+        }
+        
+        .timeline-estimate {
+            font-weight: 500;
+        }
+        
+        .transition-details {
+            margin-bottom: 1.5rem;
+        }
+        
+        .details-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+        
+        .details-content {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        .requirement-list {
+            margin-top: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .requirement-item {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .requirement-item::before {
+            content: '•';
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            line-height: 1;
+        }
+        
+        .transition-right {
+            flex: 1;
+        }
+        
+        .risk-assessment-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .risk-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .risk-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .risk-level {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .risk-moderate {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .risk-description {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+        
+        .mitigation-strategies {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+        
+        .mitigation-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+        
+        .strategy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .strategy-item {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .strategy-item::before {
+            content: '•';
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            line-height: 1;
+        }
+        
+        .readiness-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .readiness-indicators {
+            margin-top: 1rem;
+        }
+        
+        .readiness-indicator {
+            margin-bottom: 1rem;
+        }
+        
+        .indicator-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .indicator-name {
+            color: #4b5563;
+        }
+        
+        .indicator-value {
+            color: #1f2937;
+            font-weight: 500;
+        }
+        
+        .indicator-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .indicator-progress {
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        
+        .ai-resistance {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resistance-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .resistance-block {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .resistance-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .resistance-icon {
+            width: 40px;
+            height: 40px;
+            background: #dbeafe;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .resistance-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .resistance-description {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .resistance-examples {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+        
+        .examples-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+        
+        .examples-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .example-item {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .example-item::before {
+            content: '•';
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            line-height: 1;
+        }
+        
+        .success-stories {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .story-card {
+            background: #f9fafb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .story-header {
+            background: #dbeafe;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #1e40af;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .story-info {
+            flex: 1;
+        }
+        
+        .person-info {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.3rem;
+        }
+        
+        .career-path {
+            font-size: 0.9rem;
+            color: #1f2937;
+        }
+        
+        .path-arrow {
+            margin: 0 0.5rem;
+            color: #4b5563;
+        }
+        
+        .story-content {
+            padding: 1.5rem;
+        }
+        
+        .story-text {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .key-learnings {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+        
+        .learnings-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+        
+        .learnings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .learning-item {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .learning-item::before {
+            content: '•';
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+            line-height: 1;
+        }
+        
+        .action-plan {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .plan-tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin: 1.5rem 0;
+        }
+        
+        .plan-tab {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            color: #6b7280;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-tab.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            font-weight: 500;
+        }

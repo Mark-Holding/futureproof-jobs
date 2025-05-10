@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import dummyCareerPathResults from '../../data/dummyCareerPathResults'
+import CareerPathResults from './CareerPathResults'
 
 export default function PersonalizedPathPlanner() {
   const [formData, setFormData] = useState({
@@ -20,6 +22,8 @@ export default function PersonalizedPathPlanner() {
   })
 
   const [newSkill, setNewSkill] = useState('')
+  const [resultsGenerated, setResultsGenerated] = useState(false)
+  const [isGenerating, setIsGenerating] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -47,12 +51,55 @@ export default function PersonalizedPathPlanner() {
     }))
   }
 
-  const handleSubmit = () => {
-    // This would eventually connect to your backend
-    console.log('Submitting career path data:', formData)
-    // Here you would trigger an API call and handle the response
+  const handleGenerateResults = () => {
+    // Simulate API call with loading state
+    setIsGenerating(true)
+    
+    // In a real app, this would be an API call
+    setTimeout(() => {
+      setIsGenerating(false)
+      setResultsGenerated(true)
+    }, 1500)
   }
 
+  const handleReset = () => {
+    setResultsGenerated(false)
+    setFormData({
+      currentJobTitle: '',
+      industry: '',
+      yearsOfExperience: '',
+      educationLevel: '',
+      skills: ['Project Management', 'Content Creation', 'Data Analysis', 'Team Leadership'],
+      desiredRole: '',
+      targetIndustry: '',
+      topPriority: '',
+      timeline: '',
+      workEnvironment: '',
+      learningStyle: '',
+      riskTolerance: '',
+      relocationWillingness: ''
+    })
+  }
+
+  // If results are generated, show the results component
+  if (resultsGenerated) {
+    return <CareerPathResults data={dummyCareerPathResults} onReset={handleReset} />
+  }
+
+  // Loading state
+  if (isGenerating) {
+    return (
+      <div className="bg-white rounded-lg shadow-lg p-6 mb-12 min-h-[400px] flex justify-center items-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+          <h3 className="text-xl font-semibold text-blue-900 mb-2">Generating Your Career Path</h3>
+          <p className="text-gray-600">Analyzing your profile and mapping optimal transitions...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Display the form
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 mb-12">
       <div className="flex justify-between items-center mb-6">
@@ -256,10 +303,10 @@ export default function PersonalizedPathPlanner() {
               className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Learning Style</option>
-              <option value="formal">Formal Education</option>
-              <option value="self">Self-Directed Learning</option>
+              <option value="structured">Structured Courses</option>
+              <option value="selfpaced">Self-Paced Learning</option>
+              <option value="projectbased">Project-Based</option>
               <option value="mentorship">Mentorship</option>
-              <option value="handson">Hands-on Experience</option>
             </select>
           </div>
           <div className="flex flex-col">
@@ -271,13 +318,13 @@ export default function PersonalizedPathPlanner() {
               className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Risk Tolerance</option>
-              <option value="conservative">Conservative (Minimal Risk)</option>
-              <option value="moderate">Moderate Risk</option>
-              <option value="aggressive">Willing to Take Significant Risks</option>
+              <option value="conservative">Conservative</option>
+              <option value="moderate">Moderate</option>
+              <option value="aggressive">Aggressive</option>
             </select>
           </div>
           <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-700 mb-1">Relocation Willingness</label>
+            <label className="text-sm font-medium text-gray-700 mb-1">Willingness to Relocate</label>
             <select 
               name="relocationWillingness"
               value={formData.relocationWillingness}
@@ -285,21 +332,24 @@ export default function PersonalizedPathPlanner() {
               className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Willingness</option>
-              <option value="none">Not Willing to Relocate</option>
-              <option value="limited">Limited Relocation</option>
-              <option value="flexible">Flexible Nationwide</option>
-              <option value="global">Global Relocation Possible</option>
+              <option value="unwilling">Unwilling to Relocate</option>
+              <option value="limited">Limited Locations Only</option>
+              <option value="open">Open to Relocation</option>
+              <option value="eager">Eager to Relocate</option>
             </select>
           </div>
         </div>
       </div>
       
-      <button 
-        onClick={handleSubmit}
-        className="w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-blue-700 transition-colors"
-      >
-        Generate Career Path
-      </button>
+      {/* SUBMIT BUTTON */}
+      <div className="flex justify-center mt-8">
+        <button 
+          onClick={handleGenerateResults}
+          className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-md hover:from-blue-700 hover:to-blue-900 transition-colors font-medium text-lg shadow-md"
+        >
+          Generate Career Path
+        </button>
+      </div>
     </div>
   )
 } 
