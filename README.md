@@ -1,8 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FutureProof Jobs
+
+A Next.js application for AI-resistant career exploration and job searching.
+
+## Directory Structure
+
+The application follows the recommended Next.js directory structure with a `src` folder:
+
+```
+futureproof-jobs/
+├── public/            # Static assets
+├── src/               # Application source code
+│   ├── app/           # Next.js App Router
+│   ├── components/    # Shared React components
+│   ├── lib/           # Utility functions and data
+│   │   └── data/      # Data files
+│   ├── hooks/         # Custom React hooks
+│   ├── context/       # React Context providers
+│   └── types/         # TypeScript type definitions
+├── .next/             # Next.js build output (generated)
+└── ...                # Configuration files
+```
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev

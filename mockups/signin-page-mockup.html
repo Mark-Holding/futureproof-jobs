@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureProof Jobs - Sign In</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: #1e3a8a;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #4ade80;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #4ade80;
+        }
+        
+        nav ul li a.active {
+            color: #4ade80;
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        
+        .auth-container {
+            display: flex;
+            max-width: 1000px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-image {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%), url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .auth-image h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .auth-image p {
+            font-size: 1.1rem;
+            max-width: 400px;
+            margin-bottom: 2rem;
+        }
+        
+        .auth-stat {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .auth-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #4ade80;
+        }
+        
+        .auth-form {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .auth-form h1 {
+            font-size: 2rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .auth-form p {
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+        
+        .forgot-password {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .forgot-password:hover {
+            color: #1e3a8a;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .social-login {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .social-login-divider {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-login-divider::before,
+        .social-login-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #d1d5db;
+        }
+        
+        .social-login-divider span {
+            padding: 0 1rem;
+            color: #6b7280;
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .btn-social {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-social:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .btn-social img {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5rem;
+        }
+        
+        .signup-link {
+            margin-top: 2rem;
+            text-align: center;
+            color: #6b7280;
+        }
+        
+        .signup-link a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .signup-link a:hover {
+            color: #1e3a8a;
+        }
+        
+        footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .footer-logo span {
+            color: #4ade80;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .footer-links li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links li a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .auth-container {
+                flex-direction: column;
+                max-width: 500px;
+                margin: 0 1rem;
+            }
+            
+            .auth-image {
+                display: none;
+            }
+            
+            .auth-form {
+                padding: 2rem;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .footer-links li {
+                margin: 0 0.75rem;
+            }
+        }
+
+        /* AI Resistance Score Indicator */
+        .ai-resistance-indicator {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            height: 10px;
+            width: 100%;
+            margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-resistance-indicator .bar {
+            background: #4ade80;
+            height: 100%;
+            width: 92%;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="/" class="logo">Future<span>Proof</span>Jobs</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Browse Jobs</a></li>
+                    <li><a href="#">AI Resistance Index</a></li>
+                    <li><a href="#">Career Paths</a></li>
+                    <li><a href="#">For Employers</a></li>
+                    <li><a href="#" class="active">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <div class="auth-image">
+                <h2>Future-Proof Your Career Path</h2>
+                <p>Connect with opportunities in fields resistant to AI automation</p>
+                
+                <div class="auth-stat">
+                    <div class="auth-stat-value">92%</div>
+                    <div>Role Retention Rate in Our Recommended Careers</div>
+                    <div class="ai-resistance-indicator">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                
+                <div class="auth-stat">
+                    <div class="auth-stat-value">78%</div>
+                    <div>Higher Satisfaction in Human-Centered Careers</div>
+                    <div class="ai-resistance-indicator">
+                        <div class="bar" style="width: 78%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="auth-form">
+                <h1>Welcome Back</h1>
+                <p>Sign in to access your future-proof career dashboard</p>
+                
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+                
+                <div class="social-login">
+                    <div class="social-login-divider">
+                        <span>Or sign in with</span>
+                    </div>
+                    
+                    <div class="social-buttons">
+                        <button class="btn-social">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#EA4335">
+                                <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0647 7.05C9.5063 7.05 8.0782 7.75 7.1642 9.107C6.2502 10.465 6.0022 12.142 6.4842 13.684C6.9842 15.249 8.0642 16.54 9.7982 16.898C9.7202 16.402 9.6972 16.18 9.5502 15.582L8.9702 13.084C8.7762 13.302 8.2382 13.744 7.5002 13.744C5.7722 13.744 4.5002 12.027 4.5002 10.084C4.5002 7.622 6.3 5.604 8.5302 5.604C10.294 5.604 12.064 6.784 12.064 9.02C12.064 10.844 11.16 12.764 9.8542 12.764C9.0902 12.764 8.5442 12.156 8.7082 11.38L9.2462 9.126C9.3842 8.487 9.5462 7.873 9.5462 7.436C9.5462 6.915 9.2382 6.487 8.6402 6.487C7.9042 6.487 7.3102 7.31 7.3102 8.357C7.3102 8.964 7.5002 9.378 7.5002 9.378C7.5002 9.378 6.6762 13.178 6.5382 13.744C6.4182 14.229 6.3862 14.854 6.3882 15.447C4.0142 14.26 2.5002 11.654 2.5002 9C2.5002 5.13401 5.63421 2 9.5002 2C13.3662 2 16.5002 5.13401 16.5002 9C16.5002 11.806 14.7642 14.525 12.1682 15.647C12.1742 15.178 12.0622 14.617 11.8702 14.102C11.8702 14.102 11.4242 12.125 11.4242 12.089C11.8442 11.5 12.658 10.62 12.658 9.102C12.658 7.169 11.302 5.05 8.5702 5.05C6.1542 5.05 4.0002 7.071 4.0002 10.084C4.0002 12.471 5.4242 14.339 7.5002 14.339C8.7282 14.339 9.4662 13.615 9.4662 13.615L10.0462 16.113C10.1582 16.551 10.3402 16.98 10.5522 17.358C10.0342 17.44 9.53021 17.5 9.0002 17.5C5.13421 17.5 2.0002 14.366 2.0002 10.5C2.0002 6.63401 5.13421 3.5 9.0002 3.5C12.8662 3.5 16.0002 6.63401 16.0002 10.5C16.0002 14.366 12.8662 17.5 9.0002 17.5C8.4402 17.5 7.8942 17.449 7.3662 17.35C8.0862 17.783 8.9162 18 9.7982 18C12.3642 18 14.6262 16.13 15.2502 13.636C15.4242 12.868 15.5002 12.067 15.5002 11.25C15.5002 8.19 13.0702 6.05 11.0647 7.05Z"/>
+                            </svg>
+                            Google
+                        </button>
+                        <button class="btn-social">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#4267B2">
+                                <path d="M12 2.04001C6.5 2.04001 2 6.53001 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85001C10.44 7.34001 11.93 5.96001 14.22 5.96001C15.31 5.96001 16.45 6.15001 16.45 6.15001V8.62001H15.19C13.95 8.62001 13.56 9.39001 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C15.9164 21.5879 18.0622 20.3855 19.6099 18.5701C21.1576 16.7546 22.0054 14.4457 22 12.06C22 6.53001 17.5 2.04001 12 2.04001Z"/>
+                            </svg>
+                            LinkedIn
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="#">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <a href="/" class="footer-logo">Future<span>Proof</span>Jobs</a>
+            <ul class="footer-links">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
