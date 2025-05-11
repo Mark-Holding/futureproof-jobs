@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureProof Jobs - For Employers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1e3a8a;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #4ade80;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #4ade80;
+        }
+        
+        nav ul li a.active {
+            color: #4ade80;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .stats-bar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #4ade80;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #22c55e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .advantages {
+            background: white;
+        }
+        
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .advantage-card {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .advantage-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing {
+            background: #f9fafb;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-header {
+            background: #dbeafe;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .pricing-header.premium {
+            background: #bfdbfe;
+        }
+        
+        .pricing-header.enterprise {
+            background: #93c5fd;
+        }
+        
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .pricing-description {
+            color: #6b7280;
+        }
+        
+        .pricing-features {
+            padding: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .feature-item svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            color: #3b82f6;
+            flex-shrink: 0;
+        }
+        
+        .pricing-button {
+            display: block;
+            text-align: center;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            margin: 0 2rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-button:hover {
+            background: #2563eb;
+        }
+        
+        .resources {
+            background: white;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .resource-card {
+            background: #f9fafb;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-image {
+            height: 200px;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #3b82f6;
+        }
+        
+        .resource-content {
+            padding: 2rem;
+        }
+        
+        .resource-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .resource-button {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-button:hover {
+            background: #2563eb;
+        }
+        
+        .process {
+            background: #f9fafb;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            counter-reset: step;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            text-align: center;
+            position: relative;
+            counter-increment: step;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .step-number::before {
+            content: counter(step);
+        }
+        
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .screenshot {
+            background: white;
+        }
+        
+        .dashboard-preview {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .dashboard-header {
+            background: #1e3a8a;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-title {
+            font-weight: 600;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            background: #f3f4f6;
+            padding: 0.5rem;
+        }
+        
+        .dashboard-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        
+        .dashboard-tab.active {
+            background: white;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .dashboard-content {
+            padding: 2rem;
+            min-height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .dashboard-card {
+            flex: 1;
+            min-width: 200px;
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .dashboard-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .skills-chart {
+            height: 150px;
+            background: #dbeafe;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            background: #3b82f6;
+        }
+        
+        .chart-bar:nth-child(1) {
+            height: 80%;
+            left: 20px;
+        }
+        
+        .chart-bar:nth-child(2) {
+            height: 65%;
+            left: 60px;
+        }
+        
+        .chart-bar:nth-child(3) {
+            height: 90%;
+            left: 100px;
+        }
+        
+        .chart-bar:nth-child(4) {
+            height: 50%;
+            left: 140px;
+        }
+        
+        .chart-bar:nth-child(5) {
+            height: 75%;
+            left: 180px;
+        }
+        
+        .pipeline-stages {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .pipeline-stage {
+            flex: 1;
+            min-width: 100px;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stage-count {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        
+        .testimonials {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #dbeafe;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: #1f2937;
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #4ade80;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #22c55e;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #4ade80;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-col ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .process-step {
+                min-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Future<span>Proof</span>Jobs</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Browse Jobs</a></li>
+                    <li><a href="#">AI Resistance Index</a></li>
+                    <li><a href="#">Career Paths</a></li>
+                    <li><a href="#" class="active">For Employers</a></li>
+                    <li><a href="#">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Hire Human Talent That AI Can't Replace</h1>
+            <p>Connect with candidates who possess the irreplaceable human skills your organization needs to thrive in the age of AI</p>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value">95%</div>
+                    <div class="stat-label">of our candidates possess high-value human skills</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">78%</div>
+                    <div class="stat-label">reduction in time-to-hire for difficult-to-fill human-centered roles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">92%</div>
+                    <div class="stat-label">retention rate for positions filled through our platform</div>
+                </div>
+            </div>
+            
+            <a href="#" class="cta-button">Post a Job Today</a>
+        </div>
+    </section>
+
+    <section class="section advantages">
+        <div class="container">
+            <div class="section-title">
+                <h2>The AI-Resistant Talent Advantage</h2>
+                <p>In a world where technology is rapidly changing the workforce landscape, hiring employees with irreplaceable human skills creates lasting organizational value</p>
+            </div>
+            
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">🛡️</div>
+                    <h3 class="advantage-title">Future-Proof Your Workforce</h3>
+                    <p>Build teams with the human skills that will remain valuable regardless of technological advancement, creating lasting organizational resilience in the face of automation.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">💡</div>
+                    <h3 class="advantage-title">Reduce Innovation Gaps</h3>
+                    <p>Employees with strong human skills create more effective human-AI collaborative teams, leading to innovations that purely technological approaches miss.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">🤝</div>
+                    <h3 class="advantage-title">Improve Client Relationships</h3>
+                    <p>Clients increasingly value human connection, empathy and ethical judgment – precisely the skills that our candidates excel in delivering.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">⚖️</div>
+                    <h3 class="advantage-title">Build Ethical Foundations</h3>
+                    <p>As AI systems become more prevalent, human oversight and ethical decision-making become critical competitive advantages for responsible organizations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Employer Resources</h2>
+                <p>Valuable guides and insights to help you build a future-proof workforce</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-image">📝</div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Writing Job Descriptions for Human-Centered Roles</h3>
+                        <p>Learn how to craft job descriptions that attract candidates with exceptional human skills and clearly communicate your needs.</p>
+                        <a href="#" class="resource-button">Download Guide</a>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">🔍</div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Interviewing for Emotional Intelligence</h3>
+                        <p>Proven interview techniques to evaluate candidates' empathy, ethical reasoning, and other critical human capabilities.</p>
+                        <a href="#" class="resource-button">Download Guide</a>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">🤖</div>
+                    <div class="resource-content">
+                        <h3 class="resource-title">Building Human-AI Collaborative Teams</h3>
+                        <p>Strategic framework for creating teams that leverage both human strengths and technological capabilities.</p>
+                        <a href="#" class="resource-button">Download Guide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Human Skills Verification Process</h2>
+                <p>Our unique methodology for verifying candidates' human capabilities</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number"></div>
+                    <h3 class="step-title">Multi-dimensional Assessment</h3>
+                    <p>Candidates complete our proprietary assessment measuring emotional intelligence, ethical reasoning, creative thinking, and other irreplaceable human skills.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number"></div>
+                    <h3 class="step-title">Practical Validation</h3>
+                    <p>Skills are verified through scenario-based challenges that demonstrate actual capabilities rather than theoretical knowledge.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number"></div>
+                    <h3 class="step-title">AI Resistance Scoring</h3>
+                    <p>We calculate each candidate's AI Resistance Index based on their skill profile and the current state of automation technology.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number"></div>
+                    <h3 class="step-title">Matching Algorithm</h3>
+                    <p>Our system identifies candidates whose human capabilities align perfectly with your specific job requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section screenshot">
+        <div class="container">
+            <div class="section-title">
+                <h2>Employer Dashboard Preview</h2>
+                <p>A glimpse of the powerful tools available to help you find and hire human-skilled talent</p>
+            </div>
+            
+            <div class="dashboard-preview">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">FutureProof Employer Dashboard</div>
+                    <div>Company: Acme Innovations</div>
+                </div>
+                
+                <div class="dashboard-tabs">
+                    <div class="dashboard-tab active">Overview</div>
+                    <div class="dashboard-tab">Active Jobs</div>
+                    <div class="dashboard-tab">Candidates</div>
+                    <div class="dashboard-tab">Analytics</div>
+                    <div class="dashboard-tab">Resources</div>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="dashboard-card">
+                        <h3 class="dashboard-card-title">Human Skills Distribution</h3>
+                        <div class="skills-chart">
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3 class="dashboard-card-title">Hiring Pipeline</h3>
+                        <div class="pipeline-stages">
+                            <div class="pipeline-stage">
+                                <div class="stage-count">24</div>
+                                <div>New</div>
+                            </div>
+                            <div class="pipeline-stage">
+                                <div class="stage-count">18</div>
+                                <div>Screening</div>
+                            </div>
+                            <div class="pipeline-stage">
+                                <div class="stage-count">9</div>
+                                <div>Interview</div>
+                            </div>
+                            <div class="pipeline-stage">
+                                <div class="stage-count">4</div>
+                                <div>Offer</div>
+                            </div>
+                            <div class="pipeline-stage">
+                                <div class="stage-count">2</div>
+                                <div>Hired</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Employers Are Saying</h2>
+                <p>Success stories from organizations that have hired through our platform</p>
+            </div>
+            
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"After struggling to fill our specialized healthcare roles through traditional job boards, we turned to FutureProof Jobs. The quality of candidates was extraordinary—they arrived pre-screened for the exact human skills we needed. We've now filled our entire patient advocacy team through the platform."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RM</div>
+                        <div class="author-info">
+                            <h4>Rebecca Martinez</h4>
+                            <p>Director of Talent Acquisition, Meridian Health Systems</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a tech company, we were initially skeptical about focusing on 'human skills' when most of our industry is racing toward automation. But the human-AI collaborative teams we've built through FutureProof Jobs have given us a significant competitive advantage in product development. Our human-centered approach now differentiates us in the market."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JK</div>
+                        <div class="author-info">
+                            <h4>James Kim</h4>
+                            <p>Chief Innovation Officer, TechVision Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section cta">
+        <div class="container cta-container">
+            <h2>Ready to Build Your Future-Proof Workforce?</h2>
+            <p>Join hundreds of forward-thinking organizations that are preparing for the future of work by prioritizing irreplaceable human talent.</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn btn-primary">Post a Job Now</a>
+                <a href="#" class="cta-btn btn-secondary">Schedule a Consultation</a>
+                <a href="#" class="cta-btn btn-secondary">Request a Demo</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>FutureProofJobs</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Methodology</a></li>
+                        <li><a href="#">Future of Work Blog</a></li>
+                        <li><a href="#">Press & Media</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>For Job Seekers</h4>
+                    <ul>
+                        <li><a href="#">Browse Jobs</a></li>
+                        <li><a href="#">Career Assessment</a></li>
+                        <li><a href="#">Skill Development</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>For Employers</h4>
+                    <ul>
+                        <li><a href="#">Post a Job</a></li>
+                        <li><a href="#">Workforce Planning</a></li>
+                        <li><a href="#">Human-AI Integration</a></li>
+                        <li><a href="#">Employer Branding</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">AI Vulnerability Reports</a></li>
+                        <li><a href="#">Industry Insights</a></li>
+                        <li><a href="#">Research & Studies</a></li>
+                        <li><a href="#">Webinars & Events</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 FutureProofJobs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+    <section class="section pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Flexible Pricing Options</h2>
+                <p>Choose the right hiring solution for your organization's needs, whether you need to fill a single role or build a future-proof workforce</p>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="display: inline-block; background: #f3f4f6; border-radius: 50px; padding: 0.5rem; margin-bottom: 2rem;">
+                    <button style="background: #3b82f6; color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 500; cursor: pointer;">Individual Job Posts</button>
+                    <button style="background: transparent; border: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 500; cursor: pointer;">Subscription Plans</button>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin-bottom: 1.5rem; color: #1e3a8a; font-size: 1.4rem;">Individual Job Posting Options</h3>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Standard Listing</h3>
+                        <div class="pricing-price">$299<span>/post</span></div>
+                        <p class="pricing-description">Perfect for individual human-centered roles</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Advanced analytics dashboard</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>25 resume database searches per month</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Human-AI workforce analysis report</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Priority email and phone support</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="pricing-button">Start Professional Plan</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header enterprise">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">$4,999<span>/month</span></div>
+                        <p class="pricing-description">Complete workforce automation resilience strategy</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Unlimited job postings</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Featured placement for all listings</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Complete enterprise analytics suite</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Unlimited resume database searches</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Quarterly workforce automation audit</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Strategic human-AI integration planning</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Dedicated account manager</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="pricing-button">Start Enterprise Plan</a>
+                </div>
+            </div>
+            
+            <div style="background: #f3f4f6; border-radius: 10px; padding: 2rem; text-align: center; margin-top: 3rem;">
+                <h3 style="color: #1e3a8a; margin-bottom: 1rem;">Need a Custom Solution?</h3>
+                <p style="margin-bottom: 1.5rem;">We offer tailored solutions for organizations with unique workforce planning needs. Our team will work with you to develop a customized package.</p>
+                <a href="#" class="cta-button" style="margin-top: 0;">Contact Sales</a>
+            </div>
+            
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; color: #1e3a8a; margin-bottom: 2rem; font-size: 1.6rem;">Frequently Asked Questions</h3>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.1rem;">What's the difference between per-post and subscription pricing?</h4>
+                        <p>Per-post pricing is ideal for organizations with occasional hiring needs, while subscription plans are more cost-effective for companies with regular recruitment activities. Subscriptions also include additional features like resume database access and advanced analytics.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.1rem;">Can I upgrade my plan at any time?</h4>
+                        <p>Yes, you can upgrade your subscription plan at any time. The price difference will be prorated for the remainder of your billing cycle. Downgrading is also possible at the end of your current billing period.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.1rem;">How do resume database searches work?</h4>
+                        <p>Resume database searches allow you to proactively search our talent pool of candidates with verified human skills. You can filter by specific capabilities, AI Resistance Index scores, industry experience, and more. Each search counts as one credit from your monthly allowance.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.1rem;">What is the AI Resistance Index verification?</h4>
+                        <p>Our proprietary AI Resistance Index measures each candidate's skills and capabilities against current and projected automation technology. The verification process ensures that candidates possess the human skills they claim and quantifies their resilience to automation in your specific industry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>30-day job posting</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>AI Resistance Score verification</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Basic candidate matching</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Email application notifications</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="pricing-button">Post a Job</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header premium">
+                        <h3 class="pricing-title">Premium Listing</h3>
+                        <div class="pricing-price">$599<span>/post</span></div>
+                        <p class="pricing-description">Enhanced visibility and candidate quality</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>60-day featured job posting</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Enhanced visibility to matching candidates</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Detailed human skill requirements assessment</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Candidate pre-screening for human capabilities</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Priority placement in search results</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="pricing-button">Post a Premium Job</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header enterprise">
+                        <h3 class="pricing-title">Advanced Listing</h3>
+                        <div class="pricing-price">$999<span>/post</span></div>
+                        <p class="pricing-description">Maximum exposure for critical human-centered roles</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>90-day featured job posting</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Homepage featured placement</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>AI-enhanced job description optimization</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Video interview screening</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Human skills assessment report for all applicants</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="pricing-button">Post Advanced Job</a>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin: 3rem 0 1.5rem; color: #1e3a8a; font-size: 1.4rem;">Monthly Subscription Plans</h3>
+            
+            <div class="pricing-grid" style="margin-bottom: 2rem;">
+                <div class="pricing-card">
+                    <div class="pricing-header" style="background: #dbeafe;">
+                        <h3 class="pricing-title">Starter</h3>
+                        <div class="pricing-price">$799<span>/month</span></div>
+                        <p class="pricing-description">Perfect for small organizations</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>3 active job postings</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>AI Resistance scoring for all listings</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Basic analytics dashboard</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>5 resume database searches per month</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Email support</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="pricing-button">Start Monthly Plan</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header premium">
+                        <h3 class="pricing-title">Professional</h3>
+                        <div class="pricing-price">$1,999<span>/month</span></div>
+                        <p class="pricing-description">For growing organizations with regular hiring needs</p>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>10 active job postings</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Premium placement for all listings</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path
