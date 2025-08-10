@@ -4,6 +4,7 @@ import IndustryProjectionsGrid from '@/components/ai-resistance/IndustryProjecti
 import OverviewTabs from '@/components/ai-resistance/OverviewTabs';
 import CTASection from '@/components/ai-resistance/CTASection';
 import GlobalSearchHandler from '@/components/ai-resistance/GlobalSearchHandler';
+import AIResistanceApp from '@/components/ai-resistance-algorithm/AIResistanceApp';
 
 export const metadata = {
   title: 'FutureProof Jobs - AI Resistance Index',
@@ -42,6 +43,11 @@ export default function AIResistanceIndex() {
 
       <section className="py-12">
         <div className="container mx-auto px-4">
+          {/* AI Resistance Algorithm App */}
+          <div className="mb-12">
+            <AIResistanceApp />
+          </div>
+          
           <div className="bg-white rounded-lg shadow-md p-8 mb-8">
             <div className="flex justify-between items-start mb-8 flex-wrap gap-6">
               <div className="max-w-2xl">

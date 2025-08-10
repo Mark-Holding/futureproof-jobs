@@ -1,7 +1,7 @@
 export default function Features() {
   const features = [
     {
-      title: 'AI Vulnerability Index™',
+      title: 'AI Resistance Index™',
       description: 'Our proprietary rating system helps you understand which careers have long-term stability against automation, with detailed assessments updated quarterly.'
     },
     {

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import JobCard from './JobCard'
 import Pagination from './Pagination'
+import JobModal from './JobModal'
 
 // Sample job data - in a real app, this would come from an API
 const JOBS_DATA = [
@@ -87,6 +88,8 @@ const JOBS_DATA = [
 export default function JobList() {
   const [sortOption, setSortOption] = useState('futureproof')
   const [currentPage, setCurrentPage] = useState(1)
+  const [selectedJob, setSelectedJob] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const jobsCount = 143 // Total jobs count
   
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -96,6 +99,16 @@ export default function JobList() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
     // In a real app, this would trigger a new API call to fetch the jobs for the selected page
+  }
+
+  const handleOpenModal = (job: any) => {
+    setSelectedJob(job)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedJob(null)
   }
 
   return (
@@ -122,7 +135,11 @@ export default function JobList() {
       
       <div className="space-y-4">
         {JOBS_DATA.map(job => (
-          <JobCard key={job.id} {...job} />
+          <JobCard 
+            key={job.id} 
+            {...job} 
+            onOpenModal={() => handleOpenModal(job)}
+          />
         ))}
       </div>
       
@@ -130,6 +147,12 @@ export default function JobList() {
         totalPages={Math.ceil(jobsCount / 10)} 
         currentPage={currentPage}
         onPageChange={handlePageChange}
+      />
+
+      <JobModal 
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        job={selectedJob}
       />
     </div>
   )

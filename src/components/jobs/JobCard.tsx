@@ -1,6 +1,9 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import Link from 'next/link'
+import JobModal from './JobModal'
 
 interface JobCardProps {
+  id: number
   title: string
   company: string
   futureproofScore: number
@@ -14,9 +17,11 @@ interface JobCardProps {
   }>
   skillMatch: number
   logoText: string
+  onOpenModal: () => void
 }
 
 const JobCard: FC<JobCardProps> = ({
+  id,
   title,
   company,
   futureproofScore,
@@ -26,16 +31,24 @@ const JobCard: FC<JobCardProps> = ({
   description,
   tags,
   skillMatch,
-  logoText
+  logoText,
+  onOpenModal
 }) => {
+
   const getFutureproofScoreClass = (score: number) => {
     if (score >= 90) return 'bg-green-100 text-green-700'
     if (score >= 70) return 'bg-amber-100 text-amber-700'
     return 'bg-red-100 text-red-700'
   }
 
+  const handleOpenModal = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    onOpenModal()
+  }
+
   return (
-    <div className="bg-white rounded-lg p-6 shadow-sm flex border-l-4 border-transparent hover:border-l-green-400 hover:-translate-y-1 transition-all duration-300 hover:shadow-md">
+    <div className="bg-white rounded-lg p-6 shadow-sm flex border-l-4 border-transparent hover:border-l-green-400 hover:-translate-y-1 transition-all duration-300 hover:shadow-md cursor-pointer">
       <div className="flex items-center justify-center w-20 h-20 bg-gray-100 rounded-lg mr-6 text-xl font-bold text-blue-500">
         {logoText}
       </div>
@@ -43,7 +56,12 @@ const JobCard: FC<JobCardProps> = ({
       <div className="flex-1">
         <div className="flex justify-between items-start mb-2">
           <div>
-            <h3 className="text-xl font-semibold text-blue-900 mb-1">{title}</h3>
+              <button 
+                onClick={handleOpenModal}
+                className="text-xl font-semibold text-blue-900 mb-1 hover:text-blue-700 hover:underline transition-all duration-200 text-left"
+              >
+                {title}
+              </button>
             <div className="text-gray-600 mb-3">{company}</div>
           </div>
           <div className={`px-4 py-1 rounded-full text-sm font-semibold whitespace-nowrap ${getFutureproofScoreClass(futureproofScore)}`}>
@@ -63,7 +81,15 @@ const JobCard: FC<JobCardProps> = ({
           </div>
         </div>
         
-        <p className="text-gray-600 mb-4 line-clamp-2">{description}</p>
+        <div className="text-gray-600 mb-4">
+          <p className="line-clamp-2">{description}</p>
+          <button 
+            className="text-blue-600 hover:text-blue-800 hover:underline text-sm font-medium mt-1 transition-all duration-200"
+            onClick={handleOpenModal}
+          >
+            more...
+          </button>
+        </div>
         
         <div className="flex flex-wrap gap-2 mb-3">
           {tags.map((tag, index) => (
@@ -88,9 +114,12 @@ const JobCard: FC<JobCardProps> = ({
               style={{ width: `${skillMatch}%` }}
             ></div>
           </div>
+          <div className="flex items-center">
           <div className="text-sm font-semibold text-blue-600 ml-3">{skillMatch}%</div>
+          </div>
         </div>
       </div>
+
     </div>
   )
 }

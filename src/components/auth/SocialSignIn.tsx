@@ -4,9 +4,10 @@ import React from 'react'
 
 interface SocialSignInProps {
   onSocialSignIn?: (provider: 'google' | 'linkedin') => void
+  userType?: 'jobseeker' | 'employer'
 }
 
-export default function SocialSignIn({ onSocialSignIn }: SocialSignInProps = {}) {
+export default function SocialSignIn({ onSocialSignIn, userType = 'jobseeker' }: SocialSignInProps = {}) {
   const handleSocialSignIn = (provider: 'google' | 'linkedin') => {
     if (onSocialSignIn) {
       onSocialSignIn(provider)
