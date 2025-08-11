@@ -868,18 +868,7 @@ export default function PostJobPage() {
         </div>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <div className="flex items-start space-x-3">
-          <InformationCircleIcon className="w-5 h-5 text-blue-600 mt-0.5" />
-          <div>
-            <h5 className="text-sm font-medium text-blue-900">AI Resistance Score</h5>
-            <p className="text-sm text-blue-700 mt-1">
-              Based on the human skills and job requirements you've specified, we'll calculate an AI resistance score 
-              to help candidates understand how future-proof this role is.
-            </p>
-          </div>
-        </div>
-      </div>
+
     </div>
   )
 
@@ -909,6 +898,10 @@ export default function PostJobPage() {
                 <div className="text-sm text-gray-600">
                   {formData.salary.min && formData.salary.max 
                     ? `${formData.salary.currency} ${formData.salary.min} - ${formData.salary.max} per ${formData.salary.period}`
+                    : formData.salary.min && !formData.salary.max
+                    ? `${formData.salary.currency} from ${formData.salary.min} per ${formData.salary.period}`
+                    : !formData.salary.min && formData.salary.max
+                    ? `${formData.salary.currency} up to ${formData.salary.max} per ${formData.salary.period}`
                     : 'Salary not specified'
                   }
                 </div>
@@ -1020,9 +1013,12 @@ export default function PostJobPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">Resistance Level:</span>
                     <span className={`px-2 py-1 text-xs rounded-full font-medium ${
-                      formData.aiResistanceLevel === 'High' ? 'bg-green-100 text-green-800' :
+                      formData.aiResistanceLevel === 'Very High' ? 'bg-green-100 text-green-800' :
+                      formData.aiResistanceLevel === 'High' ? 'bg-emerald-100 text-emerald-800' :
                       formData.aiResistanceLevel === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
+                      formData.aiResistanceLevel === 'Low' ? 'bg-orange-100 text-orange-800' :
+                      formData.aiResistanceLevel === 'Very Low' ? 'bg-red-100 text-red-800' :
+                      'bg-gray-100 text-gray-800'
                     }`}>
                       {formData.aiResistanceLevel}
                     </span>
